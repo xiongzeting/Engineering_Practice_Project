@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>数学公式识别与步骤评分系统</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+    ></script>
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero card">
+        <h1>数学公式识别与步骤评分系统</h1>
+        <p>上传题目图片，自动提取公式并按步骤排序，随后进行分步评分。</p>
+      </header>
+
+      <section class="card">
+        <h2>0. 账户登录</h2>
+        <div class="auth-grid">
+          <form id="loginForm" class="stack">
+            <label for="authUsername">用户名</label>
+            <input type="text" id="authUsername" placeholder="请输入用户名" />
+            <label for="authPassword">密码</label>
+            <input type="password" id="authPassword" placeholder="请输入密码" />
+            <label for="authRole">角色（注册时生效）</label>
+            <select id="authRole">
+              <option value="student">学生</option>
+              <option value="teacher">教师</option>
+            </select>
+            <div class="actions">
+              <button type="button" id="registerBtn">注册</button>
+              <button type="submit" id="loginBtn">登录</button>
+              <button type="button" id="logoutBtn">退出登录</button>
+            </div>
+          </form>
+          <div class="meta-panel" id="authInfo">未登录</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>1. OCR 识别</h2>
+        <div class="ocr-layout">
+          <div class="left-pane">
+            <form id="ocrForm" class="stack">
+              <label for="image">作业图片</label>
+              <input type="file" id="image" accept="image/*" />
+
+              <details class="advanced-box">
+                <summary>高级设置（可选）</summary>
+                <div class="advanced-content">
+                  <label for="manualText">手工文本（填写后优先使用）</label>
+                  <textarea id="manualText" rows="4" placeholder="例如：1) 2x+3=7\n解：2x=4\nx=2"></textarea>
+
+                  <label class="inline" for="useLlmCorrection">
+                    <input type="checkbox" id="useLlmCorrection" />
+                    OCR后自动纠错
+                  </label>
+                  <label class="inline" for="useVisionCorrection">
+                    <input type="checkbox" id="useVisionCorrection" />
+                    图文联合纠错
+                  </label>
+                  <label class="inline hidden-advanced" for="returnLlmDebug">
+                    <input type="checkbox" id="returnLlmDebug" />
+                    返回详细诊断信息
+                  </label>
+                </div>
+              </details>
+
+              <div class="actions">
+                <button type="submit" id="ocrBtn">开始识别</button>
+                <button type="button" id="visionOnlyBtn">大模型识别</button>
+              </div>
+            </form>
+
+            <div class="preview-card">
+              <h3>图片预览</h3>
+              <div class="image-wrap">
+                <img id="imagePreview" alt="上传图片预览" />
+                <div id="imagePlaceholder" class="placeholder">上传图片后在这里预览</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-pane">
+            <div class="status" id="ocrStatus"></div>
+            <div id="questionPager" class="pager hidden">
+              <button type="button" id="prevQuestionBtn">上一题</button>
+              <span id="questionPageInfo">题目 1 / 1</span>
+              <button type="button" id="nextQuestionBtn">下一题</button>
+            </div>
+
+            <label for="ocrText">识别文本（可编辑）</label>
+            <textarea id="ocrText" rows="7" placeholder="识别结果会显示在这里"></textarea>
+
+            <h3>公式渲染</h3>
+            <div id="ocrRendered" class="math-panel">等待识别结果...</div>
+
+            <h3>步骤预览</h3>
+            <ol id="stepPreview" class="preview-list"></ol>
+
+            <div id="ocrMeta" class="meta-panel hidden"></div>
+            <div class="actions hidden">
+              <button type="button" id="applySegmentsBtn">应用分块修正</button>
+            </div>
+            <div id="segmentEditor" class="segment-editor hidden"></div>
+            <div id="questionGroups" class="meta-panel hidden"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>2. 步骤评分</h2>
+        <form id="gradeForm" class="stack">
+          <label for="referenceSolution">参考解法（可选）</label>
+          <textarea id="referenceSolution" rows="4" placeholder="输入标准解题步骤，用于更准确评分"></textarea>
+
+          <label class="inline" for="useLlm">
+            <input type="checkbox" id="useLlm" />
+            智能评分
+          </label>
+          <label class="inline" for="gradeCurrentQuestionOnly">
+            <input type="checkbox" id="gradeCurrentQuestionOnly" checked />
+            只评分当前分页题目
+          </label>
+
+          <div class="actions">
+            <button type="submit" id="gradeBtn">开始评分</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card hidden" id="resultSection">
+        <h2>评分结果</h2>
+        <div class="result-grid">
+          <div><span class="k">总分</span><span id="totalScore" class="v"></span></div>
+          <div class="full"><span class="k">整体反馈</span><span id="feedback" class="v"></span></div>
+        </div>
+
+        <details id="gradeDiagWrap" class="advanced-box hidden">
+          <summary>评分诊断（用于排查 LLM 调用）</summary>
+          <pre id="gradeDiag" class="diag-panel">暂无</pre>
+        </details>
+
+        <h3>步骤明细（按顺序）</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>步骤</th>
+              <th>识别内容</th>
+              <th>得分</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody id="stepTable"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
