@@ -1,19 +1,48 @@
-# 忽略虚拟环境
+# Python
 .venv/
 venv/
-
-# 忽略 OCR 模型和库生成的缓存
-.cache/
 __pycache__/
+.cache/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.Python
+build/
+dist/
 
-# 忽略本地数据库和运行输出图片
-outputs/
-*.db
-
-# 忽略个人配置文件（包含 API Key 等敏感信息）
+# Env / secrets
 .env
+.env.*
+!.env.example
+*.key
 
-# 忽略系统临时文件
+# SQLite
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
 .DS_Store
+
+# Eval data (large/regenerable)
+evaluation/*/data/images/
+evaluation/*/results/per_sample/
+evaluation/*/__pycache__/
+
+# Outputs (regenerable)
+outputs/
+outputs_*/
+
+# Logs
+*.log
+
+# Claude
+.claude/
+
+# OS
 Thumbs.db

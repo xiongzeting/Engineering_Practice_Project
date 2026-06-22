@@ -1,0 +1,587 @@
+- id: P01
+  name: 整数四则运算
+  stage: primary
+  grade: 2
+  prerequisites: []
+  error_type_hints:
+  - calculation
+  - sign
+  keyword_patterns:
+  - '[+\-*/×÷]'
+  - 加减
+  - 乘除
+  - 四则
+  description: 整数的加、减、乘、除基本运算
+- id: P02
+  name: 分数小数运算
+  stage: primary
+  grade: 4
+  prerequisites:
+  - P01
+  error_type_hints:
+  - calculation
+  - sign
+  keyword_patterns:
+  - \\frac
+  - 分数
+  - 小数
+  - 通分
+  - 约分
+  description: 分数与小数的四则运算、通分、约分
+- id: P03
+  name: 比与比例
+  stage: primary
+  grade: 6
+  prerequisites:
+  - P02
+  error_type_hints:
+  - calculation
+  - variable
+  keyword_patterns:
+  - 比|比例
+  - ':'
+  - 正比|反比
+  description: 比的概念、比例、正比例与反比例
+- id: P04
+  name: 简易方程
+  stage: primary
+  grade: 5
+  prerequisites:
+  - P01
+  error_type_hints:
+  - calculation
+  - sign
+  - variable
+  keyword_patterns:
+  - '[xXyY]\s*='
+  - 方程
+  - 未知数
+  description: 含一个未知数的简单方程求解
+- id: P05
+  name: 几何图形认识
+  stage: primary
+  grade: 1
+  prerequisites: []
+  error_type_hints:
+  - other
+  keyword_patterns:
+  - 三角形|正方形|长方形|圆
+  - 图形
+  - 角
+  description: 平面基本图形的认识
+- id: P06
+  name: 周长面积
+  stage: primary
+  grade: 4
+  prerequisites:
+  - P05
+  error_type_hints:
+  - calculation
+  - logic
+  keyword_patterns:
+  - 周长|面积
+  - C\s*=
+  - S\s*=
+  - \\pi
+  description: 平面图形的周长与面积计算
+- id: P07
+  name: 统计图表
+  stage: primary
+  grade: 3
+  prerequisites: []
+  error_type_hints:
+  - calculation
+  keyword_patterns:
+  - 条形图|折线图|扇形图
+  - 平均|平均数
+  - 统计
+  description: 数据收集与统计图表
+- id: P08
+  name: 应用题
+  stage: primary
+  grade: 3
+  prerequisites:
+  - P01
+  error_type_hints:
+  - logic
+  - calculation
+  keyword_patterns:
+  - 应用题
+  - 求|共|一共
+  - 倍|多|少
+  description: 文字应用题的列式与求解
+- id: P09
+  name: 因数倍数
+  stage: primary
+  grade: 5
+  prerequisites:
+  - P01
+  error_type_hints:
+  - calculation
+  - logic
+  keyword_patterns:
+  - 因数|倍数
+  - 质数|合数
+  - 公倍|公约
+  description: 因数、倍数、质数、最大公因数、最小公倍数
+- id: P10
+  name: 负数初步
+  stage: primary
+  grade: 6
+  prerequisites:
+  - P01
+  error_type_hints:
+  - sign
+  keyword_patterns:
+  - '-'
+  - 负数|正数
+  - 数轴
+  description: 负数的认识与简单运算
+- id: M01
+  name: 有理数
+  stage: middle
+  grade: 7
+  prerequisites:
+  - P10
+  error_type_hints:
+  - calculation
+  - sign
+  keyword_patterns:
+  - 有理数
+  - 绝对值
+  - 相反数
+  - \|.*\|
+  description: 有理数的概念与四则运算
+- id: M02
+  name: 整式加减
+  stage: middle
+  grade: 7
+  prerequisites:
+  - P01
+  error_type_hints:
+  - calculation
+  - sign
+  - variable
+  keyword_patterns:
+  - 整式
+  - 合并同类项
+  - '[a-zA-Z]\s*[+\-]'
+  description: 单项式、多项式、合并同类项
+- id: M03
+  name: 一元一次方程
+  stage: middle
+  grade: 7
+  prerequisites:
+  - P04
+  error_type_hints:
+  - calculation
+  - sign
+  - variable
+  keyword_patterns:
+  - 一元一次
+  - 解方程
+  - '[xX]\s*='
+  - 移项
+  description: 含一个未知数、次数为 1 的方程
+- id: M04
+  name: 二元一次方程组
+  stage: middle
+  grade: 8
+  prerequisites:
+  - M03
+  error_type_hints:
+  - calculation
+  - sign
+  - variable
+  keyword_patterns:
+  - 二元一次
+  - 方程组
+  - 代入消元|加减消元
+  description: 二元一次方程组的求解
+- id: M05
+  name: 一元一次不等式
+  stage: middle
+  grade: 7
+  prerequisites:
+  - M03
+  error_type_hints:
+  - calculation
+  - sign
+  - logic
+  keyword_patterns:
+  - 不等式
+  - '[<>≤≥]'
+  - 解集
+  description: 一元一次不等式及其解集
+- id: M06
+  name: 几何图形基础
+  stage: middle
+  grade: 7
+  prerequisites:
+  - P06
+  error_type_hints:
+  - logic
+  keyword_patterns:
+  - 线段|射线|直线
+  - 角
+  - 度
+  description: 点、线、角的基本概念
+- id: M07
+  name: 相交线平行线
+  stage: middle
+  grade: 7
+  prerequisites:
+  - M06
+  error_type_hints:
+  - logic
+  keyword_patterns:
+  - 相交|平行
+  - 同位|内错|同旁
+  - 垂线|垂足
+  description: 相交线、平行线的性质与判定
+- id: M08
+  name: 三角形全等
+  stage: middle
+  grade: 8
+  prerequisites:
+  - M07
+  error_type_hints:
+  - logic
+  keyword_patterns:
+  - 全等
+  - △|\\triangle
+  - SSS|SAS|ASA|AAS|HL
+  - 对应
+  description: 全等三角形的判定与应用
+- id: M09
+  name: 实数
+  stage: middle
+  grade: 8
+  prerequisites:
+  - M01
+  - P09
+  error_type_hints:
+  - calculation
+  keyword_patterns:
+  - 实数
+  - \\sqrt
+  - 平方根|立方根
+  - 无理数
+  description: 平方根、立方根、无理数与实数
+- id: M10
+  name: 一次函数
+  stage: middle
+  grade: 8
+  prerequisites:
+  - M03
+  error_type_hints:
+  - calculation
+  - variable
+  - logic
+  keyword_patterns:
+  - 一次函数
+  - y\s*=\s*\d*\s*\*?[a-zA-Z]?x
+  - kx\s*\+\s*b
+  - 斜率|截距
+  description: 正比例函数与一次函数
+- id: M11
+  name: 数据分析
+  stage: middle
+  grade: 8
+  prerequisites:
+  - P07
+  error_type_hints:
+  - calculation
+  keyword_patterns:
+  - 平均数|中位数|众数|方差
+  - 频数|频率
+  - 样本|总体
+  description: 平均数、中位数、众数、方差
+- id: M12
+  name: 概率初步
+  stage: middle
+  grade: 7
+  prerequisites:
+  - P07
+  error_type_hints:
+  - calculation
+  - logic
+  keyword_patterns:
+  - 概率
+  - 可能|必然|不可能
+  - P\s*\(
+  description: 概率的基本概念与计算
+- id: M13
+  name: 二次根式
+  stage: middle
+  grade: 8
+  prerequisites:
+  - M09
+  error_type_hints:
+  - calculation
+  - sign
+  keyword_patterns:
+  - 二次根式
+  - \\sqrt
+  - 化简
+  description: 二次根式的化简与运算
+- id: M14
+  name: 一元二次方程
+  stage: middle
+  grade: 9
+  prerequisites:
+  - M03
+  - M13
+  error_type_hints:
+  - calculation
+  - sign
+  - variable
+  keyword_patterns:
+  - 一元二次
+  - ax\^2|ax\s*2
+  - 判别式|\\Delta
+  - 求根公式|韦达定理
+  description: 一元二次方程的解法与判别式
+- id: M15
+  name: 四边形
+  stage: middle
+  grade: 8
+  prerequisites:
+  - M08
+  error_type_hints:
+  - logic
+  keyword_patterns:
+  - 平行四边形|矩形|菱形|正方形|梯形
+  - 对角线
+  description: 特殊四边形的性质与判定
+- id: H01
+  name: 集合与逻辑
+  stage: high
+  grade: 10
+  prerequisites:
+  - M01
+  error_type_hints:
+  - logic
+  keyword_patterns:
+  - 集合
+  - \\cap|\\cup|\\subset|\\in
+  - 充要|充分|必要
+  - ∅|\\emptyset
+  description: 集合的概念、运算与逻辑用语
+- id: H02
+  name: 函数概念与性质
+  stage: high
+  grade: 10
+  prerequisites:
+  - M10
+  error_type_hints:
+  - calculation
+  - variable
+  - logic
+  keyword_patterns:
+  - 函数
+  - 定义域|值域
+  - 单调|奇偶|周期
+  - f\s*\(
+  description: 函数的定义、定义域、单调性、奇偶性
+- id: H03
+  name: 幂函数
+  stage: high
+  grade: 10
+  prerequisites:
+  - H02
+  error_type_hints:
+  - calculation
+  - variable
+  keyword_patterns:
+  - 幂函数
+  - x\s*\^
+  - 指数
+  description: 幂函数的图像与性质
+- id: H04
+  name: 指数对数函数
+  stage: high
+  grade: 10
+  prerequisites:
+  - H02
+  error_type_hints:
+  - calculation
+  - variable
+  - logic
+  keyword_patterns:
+  - 指数函数|对数函数
+  - a\s*\^\s*x
+  - \\log|\\ln
+  - \\exp
+  description: 指数函数、对数函数的图像与性质
+- id: H05
+  name: 三角函数
+  stage: high
+  grade: 10
+  prerequisites:
+  - H02
+  error_type_hints:
+  - calculation
+  - sign
+  - variable
+  keyword_patterns:
+  - \\sin|\\cos|\\tan|\\cot
+  - 正弦|余弦|正切
+  - 弧度|角度
+  - 诱导公式
+  description: 任意角三角函数、诱导公式、图像
+- id: H06
+  name: 平面向量
+  stage: high
+  grade: 10
+  prerequisites:
+  - M07
+  error_type_hints:
+  - calculation
+  - logic
+  keyword_patterns:
+  - \\vec|\\overrightarrow
+  - 向量
+  - 数量积|点积
+  description: 向量的加减、数乘、数量积
+- id: H07
+  name: 数列
+  stage: high
+  grade: 10
+  prerequisites:
+  - H02
+  error_type_hints:
+  - calculation
+  - variable
+  - logic
+  keyword_patterns:
+  - 数列
+  - a_n|a\{n\}
+  - 等差|等比
+  - 通项|前n项和
+  description: 等差数列、等比数列的通项与前 n 项和
+- id: H08
+  name: 立体几何
+  stage: high
+  grade: 10
+  prerequisites:
+  - M15
+  - H06
+  error_type_hints:
+  - logic
+  - calculation
+  keyword_patterns:
+  - 空间|立体
+  - 棱柱|棱锥|球
+  - 二面角
+  - 异面直线
+  description: 空间几何体、点线面关系
+- id: H09
+  name: 解析几何直线圆
+  stage: high
+  grade: 10
+  prerequisites:
+  - M10
+  - H06
+  error_type_hints:
+  - calculation
+  - variable
+  - logic
+  keyword_patterns:
+  - y\s*=\s*kx\s*\+\s*b
+  - Ax\s*\+\s*By\s*\+\s*C
+  - \\circ|圆
+  - 距离公式
+  description: 直线方程、圆方程、距离公式
+- id: H10
+  name: 圆锥曲线
+  stage: high
+  grade: 11
+  prerequisites:
+  - H09
+  error_type_hints:
+  - calculation
+  - variable
+  - logic
+  keyword_patterns:
+  - 椭圆|双曲线|抛物线
+  - \\frac\{x\^2\}
+  - 焦点|准线|离心率
+  description: 椭圆、双曲线、抛物线的方程与性质
+- id: H11
+  name: 导数
+  stage: high
+  grade: 11
+  prerequisites:
+  - H02
+  error_type_hints:
+  - calculation
+  - sign
+  - variable
+  keyword_patterns:
+  - \\lim
+  - \\frac\{d
+  - \\prime|'
+  - 极限|导数
+  description: 极限、导数的概念与运算
+- id: H12
+  name: 积分
+  stage: high
+  grade: 11
+  prerequisites:
+  - H11
+  error_type_hints:
+  - calculation
+  - variable
+  keyword_patterns:
+  - \\int
+  - \\int_
+  - 不定积分|定积分
+  - 原函数
+  description: 不定积分、定积分的概念与计算
+- id: H13
+  name: 概率统计
+  stage: high
+  grade: 11
+  prerequisites:
+  - M11
+  - M12
+  error_type_hints:
+  - calculation
+  - logic
+  keyword_patterns:
+  - 条件概率
+  - 分布列
+  - 期望|方差
+  - 二项分布|正态分布
+  description: 离散型随机变量、期望、方差、常见分布
+- id: H14
+  name: 二项式定理
+  stage: high
+  grade: 11
+  prerequisites:
+  - H13
+  error_type_hints:
+  - calculation
+  - variable
+  keyword_patterns:
+  - \\binom|C_n\^k|\\mathrm\{C\}
+  - 二项式
+  - 通项
+  - (a\s*\+\s*b)\^n
+  description: 二项式定理与展开式
+- id: H15
+  name: 复数
+  stage: high
+  grade: 11
+  prerequisites:
+  - M09
+  error_type_hints:
+  - calculation
+  - sign
+  keyword_patterns:
+  - 复数
+  - 虚数|i\s*=
+  - 实部|虚部
+  - \\mathrm\{i\}
+  description: 复数的概念、代数形式、几何意义

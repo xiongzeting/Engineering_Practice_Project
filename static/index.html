@@ -3,166 +3,552 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>数学公式识别与步骤评分系统</title>
-    <link rel="stylesheet" href="/static/styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-    />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-    ></script>
+    <title>MathGrade 数学作业批改</title>
+    <!-- styles.css 通过查询字符串带版本号，强制浏览器在新版本上线时刷新缓存 -->
+    <link rel="stylesheet" href="/static/styles.css?v=20260618-flow43-fix19" />
+    <!-- KaTeX：数学公式渲染，OCR 出的 LaTeX 都靠它在前端绘制 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <!-- vis-network：知识图谱的力导向图渲染（个人中心 - 知识图谱 tab 用） -->
+    <script defer src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
   </head>
   <body>
-    <main class="container">
-      <header class="hero card">
-        <h1>数学公式识别与步骤评分系统</h1>
-        <p>上传题目图片，自动提取公式并按步骤排序，随后进行分步评分。</p>
-      </header>
+    <!-- ========= 顶部导航 =========
+         brand（品牌 logo + 文案）、top-nav（三个主导航：批改/个人中心/教师后台；
+         教师后台链接默认 hidden，登录角色是 teacher/admin 时才显示）、
+         header-actions（服务状态徽章 + 登录按钮 / 个人中心入口）。 -->
+    <header class="app-header">
+      <a class="brand" href="/">
+        <span class="brand-mark">M</span>
+        <span>
+          <strong>MathGrade</strong>
+          <small>数学作业批改</small>
+        </span>
+      </a>
+      <nav class="top-nav" aria-label="主导航">
+        <a href="/" data-nav="grading">作业批改</a>
+        <a href="/account" data-nav="account" id="userCenterNav">个人中心</a>
+        <a href="/admin" data-nav="admin" id="adminNavLink" class="hidden">教师后台</a>
+      </nav>
+      <div class="header-actions">
+        <span id="serviceBadge" class="status-pill hidden"></span>
+        <button type="button" id="loginEntryBtn" class="ghost-btn">登录</button>
+        <a href="/account" id="userCenterBtn" class="user-chip hidden">个人中心</a>
+      </div>
+    </header>
 
-      <section class="card">
-        <h2>0. 账户登录</h2>
-        <div class="auth-grid">
-          <form id="loginForm" class="stack">
-            <label for="authUsername">用户名</label>
-            <input type="text" id="authUsername" placeholder="请输入用户名" />
-            <label for="authPassword">密码</label>
-            <input type="password" id="authPassword" placeholder="请输入密码" />
-            <label for="authRole">角色（注册时生效）</label>
-            <select id="authRole">
-              <option value="student">学生</option>
-              <option value="teacher">教师</option>
-            </select>
-            <div class="actions">
-              <button type="button" id="registerBtn">注册</button>
-              <button type="submit" id="loginBtn">登录</button>
-              <button type="button" id="logoutBtn">退出登录</button>
+    <main class="app-main">
+      <!-- ========= 第 1 页：作业批改（grading 页）=========
+           四阶段流水线：上传读取 → 校对内容 → 评分 → 批改结果。
+           每个阶段是一张 stage-card，通过 hidden class 控制显隐，按进度依次展开。
+           顶部 taskStepper 显示当前处于哪一步。 -->
+      <section class="page-view" data-page="grading">
+        <section class="hero-panel">
+          <div>
+            <h1 id="pageTitle">作业批改</h1>
+            <p>上传作业图片，确认内容后生成批改结果。</p>
+          </div>
+        </section>
+
+        <!-- 四步进度指示，active class 跟着当前阶段走 -->
+        <ol id="taskStepper" class="task-stepper" aria-label="任务进度">
+          <li data-step="1" class="stepper-item active">
+            <span class="stepper-dot">1</span>
+            <span class="stepper-label">上传读取</span>
+          </li>
+          <li data-step="2" class="stepper-item">
+            <span class="stepper-dot">2</span>
+            <span class="stepper-label">校对内容</span>
+          </li>
+          <li data-step="3" class="stepper-item">
+            <span class="stepper-dot">3</span>
+            <span class="stepper-label">评分</span>
+          </li>
+          <li data-step="4" class="stepper-item">
+            <span class="stepper-dot">4</span>
+            <span class="stepper-label">批改结果</span>
+          </li>
+        </ol>
+
+        <!-- 阶段 1：上传区。支持多文件选择（多张图组成一份作业），也可切到"粘贴文本批改"绕开 OCR -->
+        <section class="stage-card" id="uploadStage">
+          <div class="stage-head">
+            <div>
+              <h2>上传一份作业</h2>
             </div>
-          </form>
-          <div class="meta-panel" id="authInfo">未登录</div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>1. OCR 识别</h2>
-        <div class="ocr-layout">
-          <div class="left-pane">
-            <form id="ocrForm" class="stack">
+          </div>
+          <div class="upload-grid">
+            <div class="upload-main">
               <label for="image">作业图片</label>
-              <input type="file" id="image" accept="image/*" />
+              <label class="drop-zone" for="image">
+                <span class="upload-icon" aria-hidden="true">+</span>
+                <strong>选择作业图片</strong>
+                <span>支持 JPG / PNG，多张图片将作为一份作业</span>
+              </label>
+              <input class="visually-hidden" type="file" id="image" accept="image/*" multiple />
 
-              <details class="advanced-box">
-                <summary>高级设置（可选）</summary>
-                <div class="advanced-content">
-                  <label for="manualText">手工文本（填写后优先使用）</label>
-                  <textarea id="manualText" rows="4" placeholder="例如：1) 2x+3=7\n解：2x=4\nx=2"></textarea>
-
-                  <label class="inline" for="useLlmCorrection">
-                    <input type="checkbox" id="useLlmCorrection" />
-                    OCR后自动纠错
-                  </label>
-                  <label class="inline" for="useVisionCorrection">
-                    <input type="checkbox" id="useVisionCorrection" />
-                    图文联合纠错
-                  </label>
-                  <label class="inline hidden-advanced" for="returnLlmDebug">
-                    <input type="checkbox" id="returnLlmDebug" />
-                    返回详细诊断信息
-                  </label>
-                </div>
-              </details>
+              <label for="assignmentTitle">作业名称（可选）</label>
+              <input id="assignmentTitle" type="text" placeholder="例如：一元一次方程练习" />
 
               <div class="actions">
-                <button type="submit" id="ocrBtn">开始识别</button>
-                <button type="button" id="visionOnlyBtn">大模型识别</button>
+                <button type="button" id="ocrBtn">读取作业</button>
+                <button type="button" id="togglePasteBtn" class="text-action">或粘贴文本批改</button>
               </div>
-            </form>
+              <div id="pastePanel" class="paste-panel hidden">
+                <label for="manualText">粘贴作业内容</label>
+                <textarea id="manualText" rows="5" placeholder="粘贴学生解题步骤"></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <div class="preview-card">
-              <h3>图片预览</h3>
+        <!-- 阶段 2：作业页。多图列表 + 实时 OCR 进度条，公式识别较慢，已识别的页可先校对 -->
+        <section class="stage-card hidden" id="pagesStage">
+          <div class="assignment-card-head">
+            <h2>作业页</h2>
+            <div class="assignment-card-tools">
+              <span id="pageCountBadge">0 页</span>
+              <button type="button" id="clearPagesBtn" class="text-action">清空</button>
+            </div>
+          </div>
+          <div id="ocrProgressInline" class="ocr-progress-inline hidden" role="status" aria-live="polite">
+            <div class="ocr-progress-inline-head">
+              <strong id="ocrProgressInlineTitle">正在读取作业</strong>
+              <span id="ocrProgressInlinePage" class="ocr-progress-inline-page"></span>
+              <span id="ocrProgressInlineTimer" class="ocr-progress-inline-timer">0s</span>
+            </div>
+            <div class="ocr-progress-bar"><div class="ocr-progress-fill"></div></div>
+            <div class="ocr-progress-inline-foot">
+              <span id="ocrProgressInlineStage">上传图片...</span>
+              <span class="ocr-progress-inline-hint">公式识别需要思考一会儿，已识别完成的页面已可校对</span>
+            </div>
+          </div>
+          <div id="batchList" class="page-list"></div>
+        </section>
+
+        <!-- 阶段 3：校对区。左侧原图预览，右侧 OCR 文本框可人工修正；
+             下方有 KaTeX 渲染预览 + 步骤列表预览，确认无误后才进评分 -->
+        <section class="stage-card hidden" id="reviewStage">
+          <div class="stage-head">
+            <div>
+              <h2>确认作业内容</h2>
+            </div>
+            <div class="pager-row">
+              <div id="pagePager" class="pager hidden">
+                <button type="button" id="prevPageBtn" class="icon-btn">‹</button>
+                <span id="pagePagerInfo">第 1 / 1 页</span>
+                <button type="button" id="nextPageBtn" class="icon-btn">›</button>
+              </div>
+              <div id="questionPager" class="pager hidden">
+                <button type="button" id="prevQuestionBtn" class="icon-btn">‹</button>
+                <span id="questionPageInfo">题目 1 / 1</span>
+                <button type="button" id="nextQuestionBtn" class="icon-btn">›</button>
+                <button type="button" id="deleteQuestionBtn" class="text-action" title="删除当前题">删除本题</button>
+              </div>
+            </div>
+          </div>
+          <div class="review-grid">
+            <div class="image-review">
               <div class="image-wrap">
-                <img id="imagePreview" alt="上传图片预览" />
-                <div id="imagePlaceholder" class="placeholder">上传图片后在这里预览</div>
+                <img id="imagePreview" alt="作业图片预览" />
+                <div id="imagePlaceholder">当前页预览</div>
+              </div>
+            </div>
+            <div>
+              <label for="ocrText">作业内容</label>
+              <textarea id="ocrText" rows="11" placeholder="读取出的作业内容会显示在这里，可人工校正"></textarea>
+              <div class="preview-grid">
+                <div>
+                  <h3>公式预览</h3>
+                  <div id="ocrRendered" class="math-panel">等待读取结果</div>
+                </div>
+                <div>
+                  <h3>步骤预览</h3>
+                  <ol id="stepPreview" class="step-list"></ol>
+                </div>
+              </div>
+              <div class="actions">
+                <button type="button" id="confirmReviewBtn">确认并进入评分</button>
+                <button type="button" id="reOcrBtn" class="secondary-btn">重新读取当前页</button>
               </div>
             </div>
           </div>
+        </section>
 
-          <div class="right-pane">
-            <div class="status" id="ocrStatus"></div>
-            <div id="questionPager" class="pager hidden">
-              <button type="button" id="prevQuestionBtn">上一题</button>
-              <span id="questionPageInfo">题目 1 / 1</span>
-              <button type="button" id="nextQuestionBtn">下一题</button>
+        <!-- 阶段 4：评分设置。参考解法（可选，提升准确度）+ 每题分值（可调，默认平均分配） -->
+        <section class="stage-card hidden" id="scoreStage">
+          <div class="stage-head">
+            <div>
+              <h2>开始批改</h2>
             </div>
-
-            <label for="ocrText">识别文本（可编辑）</label>
-            <textarea id="ocrText" rows="7" placeholder="识别结果会显示在这里"></textarea>
-
-            <h3>公式渲染</h3>
-            <div id="ocrRendered" class="math-panel">等待识别结果...</div>
-
-            <h3>步骤预览</h3>
-            <ol id="stepPreview" class="preview-list"></ol>
-
-            <div id="ocrMeta" class="meta-panel hidden"></div>
-            <div class="actions hidden">
-              <button type="button" id="applySegmentsBtn">应用分块修正</button>
+          </div>
+          <form id="gradeForm" class="scoring-grid">
+            <div>
+              <label for="referenceSolution">参考解法</label>
+              <textarea id="referenceSolution" rows="5" placeholder="可选：输入标准解法或关键得分点，能提升评分准确度"></textarea>
+              <div id="questionWeightList" class="question-weight-list hidden">
+                <div class="question-weight-head">
+                  <span>题目分值</span>
+                  <span id="questionWeightTotal" class="question-weight-total">总分 0</span>
+                </div>
+                <div id="questionWeightRows" class="question-weight-rows"></div>
+              </div>
             </div>
-            <div id="segmentEditor" class="segment-editor hidden"></div>
-            <div id="questionGroups" class="meta-panel hidden"></div>
+            <div class="score-options">
+              <button type="submit" id="gradeBtn">开始评分</button>
+              <button type="button" id="pauseGradeBtn" class="secondary-btn hidden">暂停批改</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- 阶段 5：批改结果。顶部按钮区（收藏/导出报告/批改下一份），
+             下面是总分 + 整体反馈 + 知识点诊断；底部按题切换显示每步得分与说明。
+             "精确报告生成中…" 按钮在后台 LLM 报告未就绪时禁用，就绪后变 "预览精确报告" -->
+        <section class="stage-card hidden" id="resultSection">
+          <div class="stage-head">
+            <div>
+              <h2>批改结果</h2>
+            </div>
+            <div class="actions">
+              <button type="button" id="favoriteBtn">收藏作业</button>
+              <button type="button" id="downloadSimpleReportBtn" class="secondary-btn">导出简版报告</button>
+              <button type="button" id="downloadDetailReportBtn" class="secondary-btn" disabled>精确报告生成中…</button>
+              <button type="button" id="previewDetailReportBtn" class="secondary-btn hidden">预览精确报告</button>
+              <button type="button" id="regenerateDetailReportBtn" class="secondary-btn hidden">重新生成精确报告</button>
+              <button type="button" id="newAssignmentBtn" class="secondary-btn">批改下一份</button>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>2. 步骤评分</h2>
-        <form id="gradeForm" class="stack">
-          <label for="referenceSolution">参考解法（可选）</label>
-          <textarea id="referenceSolution" rows="4" placeholder="输入标准解题步骤，用于更准确评分"></textarea>
-
-          <label class="inline" for="useLlm">
-            <input type="checkbox" id="useLlm" />
-            智能评分
-          </label>
-          <label class="inline" for="gradeCurrentQuestionOnly">
-            <input type="checkbox" id="gradeCurrentQuestionOnly" checked />
-            只评分当前分页题目
-          </label>
-
-          <div class="actions">
-            <button type="submit" id="gradeBtn">开始评分</button>
+          <div class="result-layout">
+            <div id="gradeProgressInline" class="ocr-progress-inline hidden" role="status" aria-live="polite">
+              <div class="ocr-progress-inline-head">
+                <strong id="gradeProgressInlineTitle">正在批改</strong>
+                <span id="gradeProgressInlineStage" class="ocr-progress-inline-page"></span>
+                <span id="gradeProgressInlineTimer" class="ocr-progress-inline-timer">0s</span>
+              </div>
+              <div class="ocr-progress-bar"><div class="ocr-progress-fill"></div></div>
+              <div class="ocr-progress-inline-foot">
+                <span class="ocr-progress-inline-hint">大模型正在按题逐步打分，请稍候</span>
+              </div>
+            </div>
+            <div class="result-summary-row">
+              <div class="score-block">
+                <span>总分</span>
+                <strong id="totalScore">-</strong>
+                <span class="score-denom" id="totalScoreDenom">/ 100</span>
+              </div>
+              <div>
+                <span class="muted-label">整体反馈</span>
+                <p id="feedback"></p>
+                <div id="feedbackTags" class="tag-row"></div>
+              </div>
+              <div>
+                <span class="muted-label">知识点诊断</span>
+                <div id="knowledgePanel" class="knowledge-panel"></div>
+              </div>
+            </div>
           </div>
-        </form>
+          <div id="questionResults" class="question-results hidden">
+            <div class="result-pager-head">
+              <div class="pager">
+                <button type="button" id="resultPrevQuestionBtn" class="icon-btn">‹</button>
+                <span id="resultQuestionInfo">第 1 题</span>
+                <button type="button" id="resultNextQuestionBtn" class="icon-btn">›</button>
+              </div>
+              <div id="resultQuestionScore" class="result-q-score"></div>
+            </div>
+            <div id="resultQuestionFeedback" class="result-q-feedback"></div>
+            <div id="resultStepBody" class="result-step-body"></div>
+          </div>
+          <div id="flatResultWrap" class="table-wrap hidden">
+            <table>
+              <thead>
+                <tr>
+                  <th>步骤</th>
+                  <th>作业内容</th>
+                  <th>得分</th>
+                  <th>说明</th>
+                </tr>
+              </thead>
+              <tbody id="stepTable"></tbody>
+            </table>
+          </div>
+        </section>
       </section>
 
-      <section class="card hidden" id="resultSection">
-        <h2>评分结果</h2>
-        <div class="result-grid">
-          <div><span class="k">总分</span><span id="totalScore" class="v"></span></div>
-          <div class="full"><span class="k">整体反馈</span><span id="feedback" class="v"></span></div>
-        </div>
-
-        <details id="gradeDiagWrap" class="advanced-box hidden">
-          <summary>评分诊断（用于排查 LLM 调用）</summary>
-          <pre id="gradeDiag" class="diag-panel">暂无</pre>
-        </details>
-
-        <h3>步骤明细（按顺序）</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>步骤</th>
-              <th>识别内容</th>
-              <th>得分</th>
-              <th>说明</th>
-            </tr>
-          </thead>
-          <tbody id="stepTable"></tbody>
-        </table>
+      <!-- ========= 第 2 页：个人中心（account 页）=========
+           学生视角：6 个 tab —— 资料 / OCR 调试 / 历史记录 / 收藏 / 我的班级 / 错题本 / 知识图谱。
+           教师/admin 视角：tab 数会变（班级、错题本 tab 内容会扩展为"所有学生的错题"）。 -->
+      <section class="page-view" data-page="account">
+        <article class="stage-card profile-panel" id="profilePanel">
+          <div class="stage-head">
+            <div>
+              <h1>个人中心</h1>
+            </div>
+            <button type="button" id="logoutBtn" class="secondary-btn">退出登录</button>
+          </div>
+          <!-- 个人中心 tab 切换条。每个 data-tab 对应下方一个 data-tab-content 的 pane。
+               点击 tab 由 app.js 切换 .active / .hidden。教师/admin 会看到额外 tab。 -->
+          <nav class="account-tabs" id="accountTabs" aria-label="个人中心分区">
+            <button type="button" data-tab="profile" class="account-tab active">资料</button>
+            <button type="button" data-tab="ocr" class="account-tab">读取历史</button>
+            <button type="button" data-tab="grading" class="account-tab">批改历史</button>
+            <button type="button" data-tab="favorites" class="account-tab">收藏夹</button>
+            <button type="button" data-tab="wrong-answers" class="account-tab">错题本</button>
+            <button type="button" data-tab="my-classes" class="account-tab">我的班级</button>
+            <button type="button" data-tab="kg" class="account-tab">知识图谱</button>
+            <button type="button" id="refreshAccountBtn" class="secondary-btn account-refresh">刷新</button>
+          </nav>
+          <div class="account-tab-content">
+            <!-- 资料 tab：用户信息卡片 + 4 张指标卡（读取次数 / 批改次数 / 平均分 / 最近批改） -->
+            <section data-tab-content="profile" class="account-pane active">
+              <div id="authInfo" class="profile-card">未登录</div>
+              <section class="metric-grid account-metrics">
+                <article class="metric-card">
+                  <span>读取记录</span>
+                  <strong id="metricOcrCount">0</strong>
+                </article>
+                <article class="metric-card">
+                  <span>批改次数</span>
+                  <strong id="metricGradeCount">0</strong>
+                </article>
+                <article class="metric-card">
+                  <span>平均得分</span>
+                  <strong id="metricAvgScore">0</strong>
+                </article>
+                <article class="metric-card">
+                  <span>最近批改</span>
+                  <strong id="metricLastTime">暂无</strong>
+                </article>
+              </section>
+            </section>
+            <!-- 读取历史 tab：每条 OCR 任务的原图缩略 + OCR 文本，可点击复用 -->
+            <section data-tab-content="ocr" class="account-pane hidden">
+              <h2>最近读取</h2>
+              <div id="ocrHistory" class="history-list"></div>
+            </section>
+            <!-- 批改历史 tab：历次批改记录，支持点开看详情、下载报告、再次预览 -->
+            <section data-tab-content="grading" class="account-pane hidden">
+              <h2>最近批改</h2>
+              <div id="gradingHistory" class="history-list"></div>
+            </section>
+            <!-- 收藏夹 tab：学生收藏的经典作业，可一键复用作模板 -->
+            <section data-tab-content="favorites" class="account-pane hidden">
+              <h2>收藏的作业</h2>
+              <div id="favoritesList" class="favorite-list"></div>
+            </section>
+            <!-- 我的班级 tab（学生）：输邀请码加入班级；列表显示已加入班级 + 教师布置的作业 -->
+            <section data-tab-content="my-classes" class="account-pane hidden">
+              <h2>我的班级</h2>
+              <div class="my-classes-join">
+                <input type="text" id="myClassInviteInput" placeholder="输入教师提供的邀请码" autocomplete="off" />
+                <button type="button" id="myClassJoinBtn">加入</button>
+              </div>
+              <div id="myClassesList" class="my-classes-list"></div>
+            </section>
+            <!-- 错题本 tab：自动从批改记录里抽取每一步错题，按知识点归类。
+                 顶部状态筛选（未复习/复习中/已掌握）+ 知识点筛选；下方是错题列表。 -->
+            <section data-tab-content="wrong-answers" class="account-pane hidden">
+              <div class="wrong-toolbar">
+                <div id="wrongStats" class="wrong-stats"></div>
+                <div class="wrong-filters">
+                  <select id="wrongFilterStatus" class="secondary-btn">
+                    <option value="">全部状态</option>
+                    <option value="new">未复习</option>
+                    <option value="reviewing">复习中</option>
+                    <option value="mastered">已掌握</option>
+                  </select>
+                  <select id="wrongFilterKg" class="secondary-btn">
+                    <option value="">全部知识点</option>
+                  </select>
+                </div>
+              </div>
+              <div id="wrongAnswersList" class="wrong-list"></div>
+            </section>
+            <!-- 知识图谱 tab：左侧 vis-network 画布，右侧节点详情侧栏。
+                 初始化逻辑在 kg.js 的 window.initKgPage()。颜色对应掌握度。 -->
+            <section data-tab-content="kg" class="account-pane hidden">
+              <div class="kg-header-row">
+                <p class="kg-subtitle">小学/初中/高中 40 个核心数学知识点 · 红色=薄弱 · 黄色=待巩固 · 绿色=掌握 · 灰色=未测</p>
+                <div class="kg-controls">
+                  <select id="kgStageFilter" class="secondary-btn">
+                    <option value="all">全部学段</option>
+                    <option value="primary">小学</option>
+                    <option value="middle">初中</option>
+                    <option value="high">高中</option>
+                  </select>
+                  <button type="button" id="kgRefreshBtn" class="secondary-btn">刷新</button>
+                </div>
+              </div>
+              <div class="kg-layout">
+                <div id="kgNetwork" class="kg-network"></div>
+                <aside id="kgSidePanel" class="kg-side-panel">
+                  <div class="kg-empty">点击节点查看详情</div>
+                </aside>
+              </div>
+            </section>
+          </div>
+        </article>
       </section>
+
+      <!-- ========= 第 3 页：教师后台（admin 页）=========
+           仅 teacher / admin 角色可见（顶部 adminNavLink 控制）。
+           4 个 tab：概览（用户/批改总量）→ 用户管理（改角色/删用户）→
+           班级（生成邀请码/查看成员/下载报告）→ 知识图谱（直接改 kg_ontology.yaml）。 -->
+      <section class="page-view" data-page="admin">
+        <article class="stage-card">
+          <div class="stage-head">
+            <div>
+              <h1 id="adminPageTitle">教师后台</h1>
+            </div>
+            <div class="header-actions">
+              <button type="button" id="loadAdminBtn" class="secondary-btn">刷新后台数据</button>
+              <button type="button" id="adminLogoutBtn" class="secondary-btn">退出登录</button>
+            </div>
+          </div>
+          <nav class="account-tabs" id="adminTabs" aria-label="后台分区">
+            <button type="button" data-admin-tab="overview" class="account-tab active">概览</button>
+            <button type="button" data-admin-tab="users" class="account-tab">用户管理</button>
+            <button type="button" data-admin-tab="classes" class="account-tab">班级</button>
+            <button type="button" data-admin-tab="kg" class="account-tab">知识图谱</button>
+          </nav>
+          <div class="admin-tab-content">
+            <!-- 概览：用户数/批改数/最近批改等聚合指标 -->
+            <section data-admin-pane="overview" class="account-pane active">
+              <div class="admin-note">系统概览：用户分布、读取/批改总量、最近批改记录。</div>
+              <div id="adminOverview" class="admin-grid"></div>
+            </section>
+            <!-- 用户管理：列出所有用户，可改角色或删除（删除会级连清理 OCR/批改/收藏/错题） -->
+            <section data-admin-pane="users" class="account-pane hidden">
+              <div class="admin-note">用户管理：修改角色或删除用户。删除会级连清理该用户的 OCR、批改、收藏、错题记录。</div>
+              <div id="adminUsersList" class="admin-users-list"></div>
+            </section>
+            <!-- 班级管理：创建班级 → 发邀请码给学生 → 学生加入后能看成员、看班级报告 -->
+            <section data-admin-pane="classes" class="account-pane hidden">
+              <div class="admin-note">班级管理：创建班级后把邀请码发给学生，学生在「个人中心 → 我的班级」输入邀请码加入。</div>
+              <div id="adminClassesList" class="admin-classes-wrap"></div>
+            </section>
+            <!-- KG 管理：直接增删改 data/kg_ontology.yaml，立即对所有用户生效 -->
+            <section data-admin-pane="kg" class="account-pane hidden">
+              <div class="admin-note">知识图谱节点管理：新增 / 编辑 / 删除 K1-K12 节点。修改即时写回 data/kg_ontology.yaml。</div>
+              <div class="admin-kg-toolbar">
+                <button type="button" id="adminKgNewBtn" class="secondary-btn">新增节点</button>
+                <button type="button" id="adminKgRefreshBtn" class="secondary-btn">刷新</button>
+              </div>
+              <div id="adminKgList" class="admin-kg-list"></div>
+            </section>
+          </div>
+        </article>
+      </section>
+
     </main>
 
-    <script src="/static/app.js"></script>
+    <!-- 全局 toast：apiFetchJson / setStatus 用它显示成功/错误提示，3 秒后自动隐藏 -->
+    <div id="globalStatus" class="global-toast hidden" role="status" aria-live="polite"></div>
+
+    <!-- ========= 模态弹窗区 =========
+         所有 modal 都用 auth-modal + modal-mask 实现：点 mask 或 × 关闭。
+         4 个 modal：精确报告预览 / 班级编辑 / 班级报表 / 登录注册。 -->
+
+    <!-- 精确报告预览 modal：渲染 Markdown 报告，提供"下载 .md"按钮 -->
+    <div id="detailReportModal" class="auth-modal hidden">
+      <div class="modal-mask" id="detailReportMask"></div>
+      <section class="auth-card detail-report-card">
+        <div class="stage-head">
+          <div>
+            <h2>精确批改报告</h2>
+          </div>
+          <button type="button" id="closeDetailReportBtn" class="icon-btn">×</button>
+        </div>
+        <div id="detailReportPreview" class="detail-report-preview"></div>
+        <div class="actions">
+          <button type="button" id="downloadDetailFromModalBtn" class="secondary-btn">下载 .md</button>
+        </div>
+      </section>
+    </div>
+
+    <!-- 班级编辑 modal：新建/编辑班级。classEditorId 为空时是新建。
+         admin 角色能看到额外的"任课教师"下拉，把班级指派给某位教师 -->
+    <div id="classEditorModal" class="auth-modal hidden">
+      <div class="modal-mask" id="classEditorMask"></div>
+      <section class="auth-card">
+        <div class="stage-head">
+          <div><h2 id="classEditorTitle">新建班级</h2></div>
+          <button type="button" id="closeClassEditorBtn" class="icon-btn">×</button>
+        </div>
+        <form id="classEditorForm" class="auth-form" onsubmit="return false;">
+          <input type="hidden" id="classEditorId" />
+          <label for="classEditorName">班级名称</label>
+          <input type="text" id="classEditorName" placeholder="例如：六年级 3 班" />
+          <label for="classEditorStage">学段</label>
+          <select id="classEditorStage" class="secondary-btn">
+            <option value="primary">小学</option>
+            <option value="middle" selected>初中</option>
+            <option value="high">高中</option>
+          </select>
+          <label for="classEditorGrade">年级（数字）</label>
+          <input type="number" id="classEditorGrade" min="0" max="12" value="0" />
+          <label for="classEditorDesc">说明（可选）</label>
+          <textarea id="classEditorDesc" rows="2" placeholder="科目/学期等"></textarea>
+          <div id="classEditorCreatorWrap" class="hidden">
+            <label for="classEditorCreator">任课教师（管理员把班级指派给该教师）</label>
+            <select id="classEditorCreator" class="secondary-btn"></select>
+          </div>
+          <button type="button" id="classEditorSubmitBtn">保存</button>
+        </form>
+      </section>
+    </div>
+
+    <!-- 班级报表 modal：教师/admin 查看某班级整体情况（成员数、平均分、错题分布等） -->
+    <div id="classReportModal" class="auth-modal hidden">
+      <div class="modal-mask" id="classReportMask"></div>
+      <section class="auth-card detail-report-card">
+        <div class="stage-head">
+          <div><h2>班级报表</h2></div>
+          <button type="button" id="closeClassReportBtn" class="icon-btn">×</button>
+        </div>
+        <div id="classReportBody" class="detail-report-preview"></div>
+      </section>
+    </div>
+
+    <!-- 登录/注册 modal：authModalTitle 区分两种模式；
+         bootstrap 提示在首次访问时若 admin 未创建会引导注册首个管理员 -->
+    <div id="authModal" class="auth-modal hidden">
+      <div class="modal-mask" id="authModalMask"></div>
+      <section class="auth-card">
+        <div class="stage-head">
+          <div>
+            <h2 id="authModalTitle">登录 MathGrade</h2>
+          </div>
+          <button type="button" id="closeAuthModalBtn" class="icon-btn">×</button>
+        </div>
+        <div id="authError" class="auth-error hidden"></div>
+        <form id="loginForm" class="auth-form">
+          <label for="authUsername">用户名</label>
+          <input type="text" id="authUsername" autocomplete="username" />
+          <label for="authPassword">密码</label>
+          <input type="password" id="authPassword" autocomplete="current-password" />
+          <div id="roleSelector" class="role-selector hidden">
+            <span class="role-label">注册身份</span>
+            <label class="role-option">
+              <input type="radio" name="authRole" value="student" checked />
+              <span>学生</span>
+            </label>
+            <label class="role-option">
+              <input type="radio" name="authRole" value="teacher" />
+              <span>教师</span>
+            </label>
+            <label class="role-option" id="adminRoleOption" title="系统中尚无管理员时可注册首个管理员">
+              <input type="radio" name="authRole" value="admin" />
+              <span>管理员</span>
+            </label>
+          </div>
+          <button type="submit" id="loginBtn">登录</button>
+          <button type="button" id="authModeSwitch" class="text-action">没有账号？去注册</button>
+        </form>
+      </section>
+    </div>
+
+    <script src="/static/app.js?v=20260618-flow43-fix19"></script>
+    <script src="/static/kg.js?v=20260618-flow43-fix19"></script>
   </body>
 </html>

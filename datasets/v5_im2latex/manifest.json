@@ -1,0 +1,502 @@
+[
+  {
+    "id": "im-0000",
+    "image_path": "data/images/im-0000.png",
+    "ground_truth_latex": "D ( \\phi ) = \\frac { 1 } { 2 } \\, \\frac { 1 } { p \\cdot \\partial } \\, \\partial ^ { \\mu } V ^ { ( 2 ) } ( \\phi ) \\, \\frac { \\partial } { \\partial p ^ { \\mu } } \\, ,"
+  },
+  {
+    "id": "im-0001",
+    "image_path": "data/images/im-0001.png",
+    "ground_truth_latex": "w _ { 3 } ^ { L } : w _ { 1 } ^ { L } \\; \\; = \\; \\; w _ { 1 } ^ { R } : w _ { 3 } ^ { R } \\; \\; = \\; \\; w _ { 2 } : w _ { 3 }"
+  },
+  {
+    "id": "im-0002",
+    "image_path": "data/images/im-0002.png",
+    "ground_truth_latex": "\\omega _ { i j } \\omega ^ { j k } = \\delta _ { i } ^ { k } = \\omega ^ { k j } \\omega _ { j i } \\ ."
+  },
+  {
+    "id": "im-0003",
+    "image_path": "data/images/im-0003.png",
+    "ground_truth_latex": "[ { \\cal X } _ { \\mu } ^ { T } , { \\cal X } _ { \\rho \\sigma } ^ { L } ] = \\eta _ { \\mu \\rho } { \\cal X } _ { \\sigma } ^ { T } - \\eta _ { \\mu \\sigma } { \\cal X } _ { \\rho } ^ { T } ,"
+  },
+  {
+    "id": "im-0004",
+    "image_path": "data/images/im-0004.png",
+    "ground_truth_latex": "\\partial _ { i } F ^ { \\mu i a } + g \\epsilon ^ { a b c } W _ { i } ^ { b } F ^ { \\mu i c } = g \\epsilon ^ { a b c } ( D ^ { \\mu } \\phi ^ { b } ) \\phi ^ { c }"
+  },
+  {
+    "id": "im-0005",
+    "image_path": "data/images/im-0005.png",
+    "ground_truth_latex": "C ( \\phi ) , \\; \\tilde { D } ( \\tilde { \\phi } ) > 0"
+  },
+  {
+    "id": "im-0006",
+    "image_path": "data/images/im-0006.png",
+    "ground_truth_latex": "\\Delta f = \\frac { 1 } { \\sqrt \\rho } \\left( \\frac { 1 } { \\epsilon } \\nabla ^ { a } \\frac { \\partial ^ { L } } { \\partial \\theta ^ { a } } + \\frac { 1 } { \\bar { \\epsilon } } { \\overline { { \\nabla ^ { a } } } } \\frac { \\partial ^ { L } } { \\partial { \\bar { \\theta } } ^ { a } } \\right) ( \\sqrt \\rho f ) ,"
+  },
+  {
+    "id": "im-0007",
+    "image_path": "data/images/im-0007.png",
+    "ground_truth_latex": "\\frac { \\partial x ^ { \\mu } } { \\partial x _ { f } ^ { l } } = \\psi _ { l } ^ { \\mu } = \\frac { 1 } { 2 } ( D _ { l } ^ { \\mu } + \\omega _ { l } ^ { m } D _ { m } ^ { \\mu } ) ,"
+  },
+  {
+    "id": "im-0008",
+    "image_path": "data/images/im-0008.png",
+    "ground_truth_latex": "{ \\cal { V } } \\rightarrow { \\cal { O } } { \\cal { V } } U ^ { \\mathrm { T } }"
+  },
+  {
+    "id": "im-0009",
+    "image_path": "data/images/im-0009.png",
+    "ground_truth_latex": "W _ { i j i ^ { \\prime } j ^ { \\prime } } ^ { L ( p ) } ( \\chi ) = \\sum _ { { \\cal P } l m } q _ { i j } ^ { ( p ) { \\cal P } l m } ( \\Omega ) q _ { i ^ { \\prime } j ^ { \\prime } } ^ { ( p ) { \\cal P } l m } ( \\Omega ^ { \\prime } ) ^ { * } ."
+  },
+  {
+    "id": "im-0010",
+    "image_path": "data/images/im-0010.png",
+    "ground_truth_latex": "{ \\frac { \\partial } { \\partial t } } \\rho ( t ) = d \\omega ( t ) , \\hspace { 0 . 3 i n } { \\frac { \\partial } { \\partial t } } \\omega ^ { 2 } = - 2 d \\hat { \\rho } ."
+  },
+  {
+    "id": "im-0011",
+    "image_path": "data/images/im-0011.png",
+    "ground_truth_latex": "\\frac { M } { L } \\geq \\frac { \\sqrt { p ^ { 2 } + q ^ { 2 } / g _ { s } ^ { 2 } } } { 2 \\pi { \\alpha ^ { \\prime } } } \\equiv \\tau _ { p , q } \\ ."
+  },
+  {
+    "id": "im-0012",
+    "image_path": "data/images/im-0012.png",
+    "ground_truth_latex": "\\hat { \\cal L } _ { 0 } ^ { \\prime } = - \\int d ^ { \\, 4 } y \\sum _ { \\tau = \\pm } \\hat { \\phi } ^ { ( \\tau ) \\dagger } ( x ) \\hat { D } _ { \\tau } ( x , y ) \\hat { \\phi } ^ { ( \\tau ) } ( y ) ."
+  },
+  {
+    "id": "im-0013",
+    "image_path": "data/images/im-0013.png",
+    "ground_truth_latex": "S _ { D } = - \\int d ^ { 3 } \\sigma e ^ { - \\phi } \\sqrt { - \\mathrm { d e t } \\, G _ { \\mu \\nu } ^ { \\prime } } + \\int e ^ { - \\phi } \\Omega _ { D } ,"
+  },
+  {
+    "id": "im-0014",
+    "image_path": "data/images/im-0014.png",
+    "ground_truth_latex": "L = L ^ { \\Lambda } { \\bf T } _ { \\Lambda } = d Z ^ { M } L _ { M } { } ^ { \\Lambda } { \\bf T } _ { \\Lambda } \\, ."
+  },
+  {
+    "id": "im-0015",
+    "image_path": "data/images/im-0015.png",
+    "ground_truth_latex": "{ \\cal L } = - \\frac { 1 } { \\tilde { g } \\tilde { l } _ { s } } \\left( 1 - \\frac { 1 } { 2 } \\dot { \\tilde { x } } ^ { i } \\dot { \\tilde { x } } ^ { i } + { \\cal O } ( \\dot { \\tilde { x } } ^ { 4 } ) \\right) ."
+  },
+  {
+    "id": "im-0016",
+    "image_path": "data/images/im-0016.png",
+    "ground_truth_latex": "\\Psi = \\Phi R \\hspace { . 1 i n } e x p \\frac { i } { \\hbar } S"
+  },
+  {
+    "id": "im-0017",
+    "image_path": "data/images/im-0017.png",
+    "ground_truth_latex": "\\vec { E } = 0 \\qquad \\vec { H } = \\frac { 1 } { g } \\frac { \\vec { r } } { r ^ { 3 } }"
+  },
+  {
+    "id": "im-0018",
+    "image_path": "data/images/im-0018.png",
+    "ground_truth_latex": "d e t _ { q } K \\, P _ { - } \\equiv P _ { - } K _ { 1 } \\hat { R } ^ { ( 3 ) } K _ { 1 } P _ { - }"
+  },
+  {
+    "id": "im-0019",
+    "image_path": "data/images/im-0019.png",
+    "ground_truth_latex": "n _ { 1 } \\le N / 3 , \\quad n _ { 2 } \\le 2 N / 3 , \\quad 2 n _ { 1 } \\le n _ { 2 } ."
+  },
+  {
+    "id": "im-0020",
+    "image_path": "data/images/im-0020.png",
+    "ground_truth_latex": "\\kappa ^ { 1 i } = P _ { - } ^ { i j } \\kappa _ { j } ^ { 1 } , \\quad \\kappa ^ { 2 i } = P _ { + } ^ { i j } \\kappa _ { j } ^ { 2 } ."
+  },
+  {
+    "id": "im-0021",
+    "image_path": "data/images/im-0021.png",
+    "ground_truth_latex": "\\alpha _ { t } ( A ) = e ^ { i H t } A e ^ { - i H t } , \\quad H \\geq 0 , \\quad A \\in \\mathcal { P ( M ) } ,"
+  },
+  {
+    "id": "im-0022",
+    "image_path": "data/images/im-0022.png",
+    "ground_truth_latex": "( e ^ { \\Gamma _ { 1 } \\Gamma _ { 2 } } ) _ { \\Gamma _ { 1 } ^ { \\prime } \\Gamma _ { 2 } ^ { \\prime } } = \\delta _ { \\Gamma _ { 1 } ^ { \\prime } } ^ { \\Gamma _ { 1 } } \\delta _ { \\Gamma _ { 2 } ^ { \\prime } } ^ { \\Gamma _ { 2 } } ."
+  },
+  {
+    "id": "im-0023",
+    "image_path": "data/images/im-0023.png",
+    "ground_truth_latex": "\\delta _ { \\epsilon } z ^ { \\Delta } = 0 ,"
+  },
+  {
+    "id": "im-0024",
+    "image_path": "data/images/im-0024.png",
+    "ground_truth_latex": "\\mathrm { U ( 1 ) } _ { V } \\times \\mathrm { S U ( N ) } _ { L } \\times \\mathrm { S U ( N ) } _ { R } \\; ,"
+  },
+  {
+    "id": "im-0025",
+    "image_path": "data/images/im-0025.png",
+    "ground_truth_latex": "\\left( \\alpha ^ { \\prime } \\right) ^ { - 1 } e ^ { - \\phi / 2 } f _ { 4 } \\ \\sim \\ g ^ { 0 } \\sqrt { N } \\ ."
+  },
+  {
+    "id": "im-0026",
+    "image_path": "data/images/im-0026.png",
+    "ground_truth_latex": "- 4 \\bar { \\epsilon } _ { 2 } \\zeta ^ { ( p ) } \\gamma _ { \\mu } \\partial _ { \\nu } \\lambda ."
+  },
+  {
+    "id": "im-0027",
+    "image_path": "data/images/im-0027.png",
+    "ground_truth_latex": "x _ { o } ( \\tau ) = { \\frac { 1 } { \\sqrt { S _ { 1 } } } } { \\frac { d x _ { c 1 } } { d \\tau } }"
+  },
+  {
+    "id": "im-0028",
+    "image_path": "data/images/im-0028.png",
+    "ground_truth_latex": "x ^ { L ( 0 ) } { \\cal Y } ( w _ { ( 3 ) } ^ { \\prime } , x _ { 0 } ) x ^ { - L ( 0 ) } = { \\cal Y } ( x ^ { L ( 0 ) } w _ { ( 3 ) } ^ { \\prime } , x x _ { 0 } )"
+  },
+  {
+    "id": "im-0029",
+    "image_path": "data/images/im-0029.png",
+    "ground_truth_latex": "\\langle \\xi _ { 1 } \\cdots \\xi _ { k } \\rangle \\sim \\alpha \\, \\frac { \\lambda ^ { k } } { N ^ { k } } C _ { r _ { 1 } } ( { \\bar { l } } ) \\cdots C _ { r _ { p } } ( { \\bar { l } } )"
+  },
+  {
+    "id": "im-0030",
+    "image_path": "data/images/im-0030.png",
+    "ground_truth_latex": "s a = \\partial _ { \\mu } n ^ { \\mu } ,"
+  },
+  {
+    "id": "im-0031",
+    "image_path": "data/images/im-0031.png",
+    "ground_truth_latex": "\\psi = \\sum _ { i = 0 } ^ { 3 } ( \\psi _ { i } ^ { A } + ( \\psi _ { i } ^ { A } ) ^ { c } ) T ^ { A }"
+  },
+  {
+    "id": "im-0032",
+    "image_path": "data/images/im-0032.png",
+    "ground_truth_latex": "f _ { n } ( \\bar { m } ) \\, = \\, { \\frac { 1 } { \\bar { m } } } y _ { n } \\sp 2 ( \\bar { m } ) ."
+  },
+  {
+    "id": "im-0033",
+    "image_path": "data/images/im-0033.png",
+    "ground_truth_latex": "L = - \\frac { 1 } { 2 } \\eta _ { \\mu \\nu } \\partial ^ { \\mu } \\Phi \\partial ^ { \\nu } \\Phi - \\frac { \\lambda } { 2 } ( \\Phi ^ { 2 } - \\frac { M ^ { 2 } } { 4 \\lambda } ) ^ { 2 } ,"
+  },
+  {
+    "id": "im-0034",
+    "image_path": "data/images/im-0034.png",
+    "ground_truth_latex": "d \\mu _ { l } ( k ) ~ d \\theta = \\frac { 4 \\mid k _ { 2 2 } \\mid } { \\mid k _ { 2 2 } - k _ { 1 1 } \\mid } ~ d \\mu ( u )"
+  },
+  {
+    "id": "im-0035",
+    "image_path": "data/images/im-0035.png",
+    "ground_truth_latex": "\\mu ^ { \\prime \\prime } - \\frac { ( { \\sqrt { s } } ) ^ { \\prime \\prime } } { \\sqrt { s } } \\mu - \\frac { r } { s } \\partial _ { \\alpha } \\partial ^ { \\alpha } \\mu = 0 ."
+  },
+  {
+    "id": "im-0036",
+    "image_path": "data/images/im-0036.png",
+    "ground_truth_latex": "\\operatorname { c o s h } ( r ( \\hat { a } - \\hat { f } ) ) - ( - 1 ) ^ { r } \\operatorname { c o s } ( r ( \\bar { a } + \\bar { f } ) )"
+  },
+  {
+    "id": "im-0037",
+    "image_path": "data/images/im-0037.png",
+    "ground_truth_latex": "G ^ { \\pm } * \\tau _ { p } = \\delta \\omega ^ { 2 \\pm p } G ^ { \\mp } \\, \\tau _ { p } ,"
+  },
+  {
+    "id": "im-0038",
+    "image_path": "data/images/im-0038.png",
+    "ground_truth_latex": "P _ { N } ( x ) = ( x - \\phi ) P _ { N - 1 } ( x ) - y P _ { N - 2 } ( x ) ,"
+  },
+  {
+    "id": "im-0039",
+    "image_path": "data/images/im-0039.png",
+    "ground_truth_latex": "\\Phi = \\left( \\begin{array} { c } { \\phi _ { 0 } - i \\phi _ { 1 } } \\\\ { \\phi _ { 2 } - i \\phi _ { 3 } } \\\\ \\end{array} \\right)"
+  },
+  {
+    "id": "im-0040",
+    "image_path": "data/images/im-0040.png",
+    "ground_truth_latex": "\\Lambda ( \\lambda ) = 2 \\lambda ^ { n } + \\hat { q } _ { 2 } \\lambda ^ { n - 2 } + \\hat { q } _ { 3 } \\lambda ^ { n - 3 } + \\cdots + \\hat { q } _ { n } ,"
+  },
+  {
+    "id": "im-0041",
+    "image_path": "data/images/im-0041.png",
+    "ground_truth_latex": "i { \\frac { \\partial \\psi } { \\partial t } } = { \\frac { 1 } { 2 } } ( 1 + \\vec { \\rho } ( \\psi ) \\cdot \\vec { \\sigma } ) \\psi"
+  },
+  {
+    "id": "im-0042",
+    "image_path": "data/images/im-0042.png",
+    "ground_truth_latex": "\\xi = v _ { 1 } \\left( u _ { 1 } - \\kappa v _ { 2 } \\right) + v _ { 2 } \\left( u _ { 2 } - \\kappa v _ { 1 } \\right) ."
+  },
+  {
+    "id": "im-0043",
+    "image_path": "data/images/im-0043.png",
+    "ground_truth_latex": "n ^ { 3 } P _ { \\mathrm { \\Phi } } \\propto n ^ { 2 \\beta + 4 } ."
+  },
+  {
+    "id": "im-0044",
+    "image_path": "data/images/im-0044.png",
+    "ground_truth_latex": "{ \\cal B } _ { - } = Q ^ { - 1 } \\partial _ { - } Q ,"
+  },
+  {
+    "id": "im-0045",
+    "image_path": "data/images/im-0045.png",
+    "ground_truth_latex": "\\tilde { Q } ( | \\varphi \\rangle + \\delta | \\varphi \\rangle ) = \\tilde { Q } | \\varphi \\rangle - L _ { 0 } M | \\lambda \\rangle + \\tilde { Q } M | \\omega \\rangle ."
+  },
+  {
+    "id": "im-0046",
+    "image_path": "data/images/im-0046.png",
+    "ground_truth_latex": "U _ { H } ( \\phi ) = C ( \\bar { \\phi } \\phi - v ^ { 2 } ) ^ { 2 } \\, ."
+  },
+  {
+    "id": "im-0047",
+    "image_path": "data/images/im-0047.png",
+    "ground_truth_latex": "\\left( C M _ { \\gamma \\lambda } \\right) _ { \\alpha \\beta } = - ( C _ { \\alpha \\gamma } C _ { \\lambda \\beta } + C _ { \\alpha \\lambda } C _ { \\gamma \\beta } ) ,"
+  },
+  {
+    "id": "im-0048",
+    "image_path": "data/images/im-0048.png",
+    "ground_truth_latex": "M = \\int { d ^ { s } } x { a ^ { \\dagger } } ( x ) F ( a ( x ) , { D ^ { \\alpha } } a ( x ) ) ,"
+  },
+  {
+    "id": "im-0049",
+    "image_path": "data/images/im-0049.png",
+    "ground_truth_latex": "R _ { s } ^ { \\mathrm { r w } } \\sim \\ell _ { s } ( M / M _ { s } ) ^ { 1 / 2 } \\, ,"
+  },
+  {
+    "id": "im-0050",
+    "image_path": "data/images/im-0050.png",
+    "ground_truth_latex": "w ( E , e , m ) = \\frac { e ^ { 2 } E ^ { 2 } } { 4 \\pi ^ { 3 } } \\sum _ { n = 1 } ^ { + \\infty } \\frac { e ^ { - n \\frac { \\pi m ^ { 2 } } { e E } } } { n ^ { 2 } } ."
+  },
+  {
+    "id": "im-0051",
+    "image_path": "data/images/im-0051.png",
+    "ground_truth_latex": "a _ { 2 } = { \\displaystyle \\frac { 9 9 } { 5 } } + 8 \\, { \\displaystyle \\frac { 1 } { { \\omega } } } \\; ,"
+  },
+  {
+    "id": "im-0052",
+    "image_path": "data/images/im-0052.png",
+    "ground_truth_latex": "h _ { \\mu \\nu } = \\operatorname { e x p } ( 2 A ) { \\widetilde h } _ { \\mu \\nu } ~ ."
+  },
+  {
+    "id": "im-0053",
+    "image_path": "data/images/im-0053.png",
+    "ground_truth_latex": "\\Delta x \\sim \\frac { \\hbar } { \\Delta E } + \\alpha ^ { ' } \\Delta E \\; ."
+  },
+  {
+    "id": "im-0054",
+    "image_path": "data/images/im-0054.png",
+    "ground_truth_latex": "\\{ l _ { i } , l _ { j } \\} = C _ { i j } ^ { k } l _ { k } ,"
+  },
+  {
+    "id": "im-0055",
+    "image_path": "data/images/im-0055.png",
+    "ground_truth_latex": "{ \\displaystyle x ^ { \\prime } = \\frac { 1 } { 2 } \\frac { 1 + 3 \\sqrt { y } } { 1 + \\sqrt { y } - \\frac { 1 } { x } } , } \\hspace { 1 c m } { \\displaystyle \\sqrt { y } ^ { \\prime } = \\frac { 1 - \\sqrt { y } } { 1 + 3 \\sqrt { y } } . }"
+  },
+  {
+    "id": "im-0056",
+    "image_path": "data/images/im-0056.png",
+    "ground_truth_latex": "\\Gamma _ { F T { \\overline { { F } } } } ^ { [ r , 0 ] } \\longrightarrow C _ { ( F ) s } ^ { ( r ) } \\quad \\mathrm { { i n } } \\quad \\Phi _ { T T } ^ { ( D ) } \\, ."
+  },
+  {
+    "id": "im-0057",
+    "image_path": "data/images/im-0057.png",
+    "ground_truth_latex": "a \\star _ { + } b = { \\cal F } _ { 2 1 } * ( a \\otimes b ) * { \\cal F } ^ { - 1 }"
+  },
+  {
+    "id": "im-0058",
+    "image_path": "data/images/im-0058.png",
+    "ground_truth_latex": "\\chi = \\left| \\mathrm { T r } \\, U \\right| ^ { 2 } ."
+  },
+  {
+    "id": "im-0059",
+    "image_path": "data/images/im-0059.png",
+    "ground_truth_latex": "\\Gamma ( z + 1 ) = \\int _ { 0 } ^ { \\infty } \\, \\, d x \\, \\, e ^ { - x } x ^ { z } ."
+  },
+  {
+    "id": "im-0060",
+    "image_path": "data/images/im-0060.png",
+    "ground_truth_latex": "S = S _ { \\mathrm { { \\small b r a n e } } } [ \\Phi ] + S _ { \\mathrm { \\small b u l k } } [ \\sigma ] + S _ { \\mathrm { { \\small i n t } } } [ \\Phi , \\sigma ] ~ ,"
+  },
+  {
+    "id": "im-0061",
+    "image_path": "data/images/im-0061.png",
+    "ground_truth_latex": "\\Sigma ( p ) \\sim g \\int ^ { \\Lambda } \\Gamma \\frac { d ^ { 4 } k } { \\gamma ^ { \\mu } ( k + p ) _ { \\mu } } \\Gamma \\, ,"
+  },
+  {
+    "id": "im-0062",
+    "image_path": "data/images/im-0062.png",
+    "ground_truth_latex": "F _ { k } ( \\tau , q , \\dot { q } , \\ddot { q } ) = A _ { k j } ( \\tau , q , \\dot { q } ) \\ddot { q } ^ { j } + B _ { k } ( \\tau , q , \\dot { q } ) ."
+  },
+  {
+    "id": "im-0063",
+    "image_path": "data/images/im-0063.png",
+    "ground_truth_latex": "F _ { \\mu \\nu } ^ { a } = \\partial _ { \\mu } W _ { \\nu } ^ { a } - \\partial _ { \\nu } W _ { \\mu } ^ { a } + g \\epsilon ^ { a b c } W _ { \\mu } ^ { b } W _ { \\nu } ^ { c }"
+  },
+  {
+    "id": "im-0064",
+    "image_path": "data/images/im-0064.png",
+    "ground_truth_latex": "J ^ { a } ( z ) = S ^ { a } ( z ) + \\frac { 1 } { 2 } \\lambda _ { ~ \\mu \\nu } ^ { a } : \\psi ^ { \\mu } \\psi ^ { \\nu } : ( z ) ,"
+  },
+  {
+    "id": "im-0065",
+    "image_path": "data/images/im-0065.png",
+    "ground_truth_latex": "T _ { \\mathit { G } } ( - t , - t ^ { - 1 } ) = T _ { \\mathit { G } ^ { \\ast } } ( - t ^ { - 1 } , - t )"
+  },
+  {
+    "id": "im-0066",
+    "image_path": "data/images/im-0066.png",
+    "ground_truth_latex": "K \\equiv * { \\frac { ( k + \\omega ) \\wedge ( k + \\omega ) } { 2 ! } }"
+  },
+  {
+    "id": "im-0067",
+    "image_path": "data/images/im-0067.png",
+    "ground_truth_latex": "\\frac { d E _ { q } } { d q } = \\frac { 2 \\pi J } { N } \\left\\{ \\frac { N - 1 } { 4 } - m \\right\\}"
+  },
+  {
+    "id": "im-0068",
+    "image_path": "data/images/im-0068.png",
+    "ground_truth_latex": "f ( S ) ^ { S } \\ = \\ 2 R e f ( S ) { G ( S , S ^ { * } ) _ { S } ^ { S } } ^ { 1 / 2 }"
+  },
+  {
+    "id": "im-0069",
+    "image_path": "data/images/im-0069.png",
+    "ground_truth_latex": "\\{ \\xi ^ { \\mu } , \\xi ^ { \\nu } \\} = i \\eta ^ { \\mu \\nu } \\, , ~ ~ ~ ~ ~ ~ ~ \\{ \\pi _ { 5 } , \\xi _ { 5 } \\} = - 1 \\, ."
+  },
+  {
+    "id": "im-0070",
+    "image_path": "data/images/im-0070.png",
+    "ground_truth_latex": "\\phi _ { 0 } ( \\vec { x } ^ { \\prime } ) = \\frac { 1 } { 2 \\Delta - d } \\int _ { 0 } ^ { \\epsilon } d z ^ { \\prime } \\, { z } ^ { \\Delta - d - 1 } J ( x ^ { \\prime } ) ."
+  },
+  {
+    "id": "im-0071",
+    "image_path": "data/images/im-0071.png",
+    "ground_truth_latex": "\\tau _ { k } ( { \\cal M } ) = \\phi _ { k } ( { \\cal M } ) \\bmod \\Gamma _ { k } \\mathrm { , }"
+  },
+  {
+    "id": "im-0072",
+    "image_path": "data/images/im-0072.png",
+    "ground_truth_latex": "\\gamma _ { n } > \\frac { \\pi \\sqrt { 2 } } { 4 } \\; ."
+  },
+  {
+    "id": "im-0073",
+    "image_path": "data/images/im-0073.png",
+    "ground_truth_latex": "d s ^ { 2 } = d x _ { R ^ { 5 , 1 } } ^ { 2 } + N d \\rho ^ { 2 } + N d s _ { S ^ { 3 } } ^ { 2 } ,"
+  },
+  {
+    "id": "im-0074",
+    "image_path": "data/images/im-0074.png",
+    "ground_truth_latex": "\\tilde { L } = A ^ { - } A ^ { + } + \\lambda _ { 0 } ,"
+  },
+  {
+    "id": "im-0075",
+    "image_path": "data/images/im-0075.png",
+    "ground_truth_latex": "h \\left( a , b \\right) = \\lambda \\left( a \\right) \\left[ \\lambda \\left( b \\right) \\right] ^ { - 1 } ,"
+  },
+  {
+    "id": "im-0076",
+    "image_path": "data/images/im-0076.png",
+    "ground_truth_latex": "{ \\cal A } _ { F } ^ { 0 } = - \\frac { 1 } { 1 6 \\pi } \\int d ^ { 4 } x F _ { \\mu \\nu } ( x ) F ^ { \\mu \\nu } ( x ) ,"
+  },
+  {
+    "id": "im-0077",
+    "image_path": "data/images/im-0077.png",
+    "ground_truth_latex": "R = 2 \\sqrt { \\frac { x } { ( n - 2 ) / r _ { + } - 2 m ^ { \\prime } ( r _ { + } ) / r _ { + } ^ { n - 2 } } } ."
+  },
+  {
+    "id": "im-0078",
+    "image_path": "data/images/im-0078.png",
+    "ground_truth_latex": "N ( E ) = { \\frac { 2 E ^ { 3 / 2 } } { 3 b \\hbar ^ { 2 } } } F \\! \\left( { \\frac { 1 } { 2 } } , { \\frac { 1 } { 2 } } ; 1 ; { \\frac { b ^ { 2 } - g ^ { 2 } } { 2 b ^ { 2 } } } \\right) ."
+  },
+  {
+    "id": "im-0079",
+    "image_path": "data/images/im-0079.png",
+    "ground_truth_latex": "m _ { 1 } ^ { 2 } = - \\frac { \\kappa ^ { 2 } \\Lambda _ { 1 } } { 6 } , \\; \\; \\; m _ { 2 } ^ { 2 } = - \\frac { \\kappa ^ { 2 } \\Lambda _ { 2 } } { 6 } ,"
+  },
+  {
+    "id": "im-0080",
+    "image_path": "data/images/im-0080.png",
+    "ground_truth_latex": "w ^ { l } = \\sum _ { j = 0 } ^ { s } a _ { j } v _ { j } ^ { m } \\otimes v _ { s - j } ^ { n } ~ ~ ~ \\in V ( m ) \\otimes V ( n ) ~ ,"
+  },
+  {
+    "id": "im-0081",
+    "image_path": "data/images/im-0081.png",
+    "ground_truth_latex": "{ } F _ { \\mu \\nu } ^ { A } ( { \\bf n } ) = \\frac { \\partial F ^ { A } ( { \\bf n } ) } { \\partial { \\bar { g } } ^ { \\mu \\nu } } ,"
+  },
+  {
+    "id": "im-0082",
+    "image_path": "data/images/im-0082.png",
+    "ground_truth_latex": "P ( x , y ) = \\sum _ { p = 1 } ^ { k } \\varphi _ { p } \\varphi _ { p } ^ { \\dagger }"
+  },
+  {
+    "id": "im-0083",
+    "image_path": "data/images/im-0083.png",
+    "ground_truth_latex": "H _ { n } ^ { k } \\ = \\ \\oint { \\frac { d z } { 2 \\pi i } } \\, z ^ { n } { \\frac { 1 } { 2 \\lambda } } : \\psi ( e ^ { k \\lambda / 2 } z ) \\psi ( e ^ { - k \\lambda / 2 } z ) :"
+  },
+  {
+    "id": "im-0084",
+    "image_path": "data/images/im-0084.png",
+    "ground_truth_latex": "\\delta W _ { \\mu } = - i g \\Lambda W _ { \\mu } \\; \\; \\; \\; \\delta W _ { \\mu } ^ { \\ast } = i g \\Lambda W _ { \\mu } ^ { \\ast }"
+  },
+  {
+    "id": "im-0085",
+    "image_path": "data/images/im-0085.png",
+    "ground_truth_latex": "\\psi ^ { \\alpha } = \\epsilon ^ { \\alpha \\beta } \\psi _ { \\beta } , \\qquad \\mathrm { a n d } \\qquad \\psi _ { \\alpha } = \\psi ^ { \\beta } \\epsilon _ { \\beta \\alpha } ."
+  },
+  {
+    "id": "im-0086",
+    "image_path": "data/images/im-0086.png",
+    "ground_truth_latex": "\\mu = \\Bigl ( \\frac { N } { 4 } \\Bigr ) ^ { 1 / 3 } - \\frac { 1 } { 2 } + . . . ~ ."
+  },
+  {
+    "id": "im-0087",
+    "image_path": "data/images/im-0087.png",
+    "ground_truth_latex": "\\left\\{ M _ { \\mu \\nu } , \\phi ( k ) \\right\\} = D _ { \\mu \\nu } \\phi ( k ) ,"
+  },
+  {
+    "id": "im-0088",
+    "image_path": "data/images/im-0088.png",
+    "ground_truth_latex": "\\partial _ { \\mu } \\Delta _ { I J } = - 2 \\, ( \\beta _ { I J } c _ { \\mu } ^ { I } + \\beta _ { J I } c _ { \\mu } ^ { J } ) ."
+  },
+  {
+    "id": "im-0089",
+    "image_path": "data/images/im-0089.png",
+    "ground_truth_latex": "\\mathrm { E r f c } ( x ) = \\int _ { x } ^ { \\infty } e ^ { - t ^ { 2 } } d t ,"
+  },
+  {
+    "id": "im-0090",
+    "image_path": "data/images/im-0090.png",
+    "ground_truth_latex": "I = \\frac { \\kappa l ^ { 2 } } { 2 n } \\int _ { { \\cal M } } \\epsilon _ { a _ { 1 } \\ldots a _ { d } }"
+  },
+  {
+    "id": "im-0091",
+    "image_path": "data/images/im-0091.png",
+    "ground_truth_latex": "x = 0 \\ldots \\frac { \\pi } { 2 } \\; , \\; \\theta = - \\pi \\ldots \\pi \\; , \\; \\tilde { \\theta } = - \\pi \\ldots \\pi ."
+  },
+  {
+    "id": "im-0092",
+    "image_path": "data/images/im-0092.png",
+    "ground_truth_latex": "F ( \\eta ; \\xi _ { 1 } , \\xi _ { 2 } ) = \\sum _ { \\ell = 0 } ^ { 2 I } ( \\xi _ { 2 } \\eta ) ^ { \\ell } [ \\xi _ { 1 } ( 1 - \\eta ) ] ^ { 2 I - \\ell } f _ { \\ell } ( \\eta ) \\"
+  },
+  {
+    "id": "im-0093",
+    "image_path": "data/images/im-0093.png",
+    "ground_truth_latex": "j _ { \\mu } \\sim \\left( i \\: \\overline { { \\Psi } } \\gamma _ { 0 } \\Psi , \\: i \\: v \\overline { { \\Psi } } \\mathrm { \\boldmath ~ \\gamma ~ } \\Psi \\right)"
+  },
+  {
+    "id": "im-0094",
+    "image_path": "data/images/im-0094.png",
+    "ground_truth_latex": "b ^ { \\alpha \\beta \\rho \\sigma } \\, p _ { \\sigma } \\, \\hat { \\Pi } ( p ) _ { \\alpha \\beta \\mu \\nu } = 0 \\, ,"
+  },
+  {
+    "id": "im-0095",
+    "image_path": "data/images/im-0095.png",
+    "ground_truth_latex": "( \\varphi , \\theta ) \\sim ( \\varphi + u , \\theta + \\alpha ) \\sim ( \\varphi + v , \\theta + \\beta ) ."
+  },
+  {
+    "id": "im-0096",
+    "image_path": "data/images/im-0096.png",
+    "ground_truth_latex": "T \\left| n \\right\\rangle = \\left| n + 1 \\, \\bmod \\, k \\right\\rangle"
+  },
+  {
+    "id": "im-0097",
+    "image_path": "data/images/im-0097.png",
+    "ground_truth_latex": "I _ { ( \\lambda ) \\; E H } = \\int _ { M _ { \\lambda } ^ { 4 } } { \\cal L } _ { E H } + { \\cal L } _ { Y M } + { \\cal L } _ { g w } + { \\cal L } _ { m a s s } ."
+  },
+  {
+    "id": "im-0098",
+    "image_path": "data/images/im-0098.png",
+    "ground_truth_latex": "\\Psi ( \\omega ; \\lambda ) = \\Phi ( \\omega ; \\lambda ) + { \\frac { \\omega } { \\lambda } } \\int _ { \\mu } ^ { \\omega } \\partial _ { \\lambda } \\Phi ( \\sigma ; \\lambda ) d \\sigma ~ ~ ~ ."
+  },
+  {
+    "id": "im-0099",
+    "image_path": "data/images/im-0099.png",
+    "ground_truth_latex": "I = \\int d t d ^ { 2 } { \\bf r } ( i \\psi ^ { \\ast } \\partial _ { t } \\psi - { \\frac { 1 } { 2 } } | ( D _ { 1 } - i D _ { 2 } ) \\psi | ^ { 2 } )"
+  }
+]

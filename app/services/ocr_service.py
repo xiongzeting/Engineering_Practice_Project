@@ -1,3 +1,15 @@
+"""多引擎 OCR 服务：cnocr + latex-ocr 双引擎，或 Pix2Text 一体化。
+
+这是「传统 OCR 路径」的入口（与 :mod:`vision_ocr` 里的纯视觉 LLM 路径
+相对）。主要选择由环境变量 ``OCR_ENGINE`` 决定：
+
+- ``dual``（默认）：先用 :mod:`layout_segmenter` 切块，文字块喂 cnocr，
+  公式块喂 latex-ocr，再 :mod:`ocr_postprocess` 合并、纠错、按题切分。
+- ``pix2text``：调用 Pix2Text 库一次出结果，作为 fallback。
+
+为什么保留这条路径？纯视觉 LLM 准确率更高但慢且贵，本地小模型
+适合实时预览 / 调试 / 离线场景。
+"""
 from __future__ import annotations
 
 import io
@@ -47,6 +59,19 @@ class OCRService:
         self.last_error: str | None = None
 
     def extract(self, image_bytes: bytes, fallback_text: str | None = None) -> OCRResult:
+        """OCR 主入口：依次尝试 4 条路径，命中即返回。
+
+        优先级顺序（越靠前越优先）：
+        1. ``fallback_text`` 手动输入：前端可传用户直接录入的文本，跳过 OCR；
+        2. **双引擎路径**：layout_segmenter 切块 → cnocr 识文字 + latex-ocr
+           识公式 → ocr_postprocess 合并；
+        3. **Pix2Text 一体化**：P2T 库一次出结果；
+        4. **布局+rapid**：layout_segmenter + rapid-ocr；
+        5. **rapid-latex-ocr 单跑**；
+        6. **pix2tex 单跑**。
+
+        最后兜底返回 ``OCRResult(text="", engine="none", error=...)``。
+        """
         self.last_error = None
         if fallback_text and fallback_text.strip():
             text = fallback_text.strip().replace("\\r\\n", "\n").replace("\\n", "\n")
@@ -162,6 +187,13 @@ class OCRService:
         )
 
     def _extract_with_dual_pipeline(self, image_bytes: bytes) -> tuple[str, list[dict[str, Any]]]:
+        """「双引擎」路径：cnocr（文字）+ latex-ocr（公式）联合识别。
+
+        流程：布局切块 → 对每块判类型 → 文字块喂 cnocr、公式块喂
+        latex-ocr → 用 :mod:`ocr_postprocess` 合并。模型只在首次调用时
+        加载，之后复用。若依赖未安装或加载失败，会置 ``_dual_unavailable``
+        标志，后续不再重试。
+        """
         if self._dual_unavailable:
             return "", []
         if not image_bytes:
@@ -208,6 +240,11 @@ class OCRService:
         return text, segments
 
     def _ensure_dual_models(self) -> None:
+        """懒加载双引擎模型（cnocr + latex-ocr）。
+
+        任一模型加载失败都置 unavailable 标志，后续调用直接返回空，
+        避免每次请求都重试一遍。"""
+
         cache_root = self._cache_dir
         p2t_home = cache_root / "pix2text"
         cnocr_home = cache_root / "cnocr"
@@ -243,6 +280,12 @@ class OCRService:
             )
 
     def _recognize_crop_dual(self, crop: Image.Image) -> tuple[str, str, float]:
+        """对单块小图调双引擎识别，返回 ``(text, seg_type, score)``。
+
+        ``seg_type`` 是 ``text`` / ``formula``，决定后续在合并阶段的
+        排序与拼接方式。
+        """
+
         text_out = {"text": "", "score": 0.0}
         formula_out = {"text": "", "score": 0.0}
 
@@ -293,6 +336,11 @@ class OCRService:
         return text_s if text_s else formula_s, "TEXT" if text_s else "FORMULA", max(text_score, formula_score)
 
     def _extract_with_pix2text(self, image_bytes: bytes) -> tuple[str, list[dict[str, Any]]]:
+        """Pix2Text 路径：调用 P2T 库做一体化识别（文字 + 公式 + 表格）。
+
+        P2T 内部会用自己的版面分析，所以不走我们的 layout_segmenter。
+        返回 ``(text, segments)``；失败返回空。
+        """
         if self._p2t_unavailable:
             return "", []
 
@@ -354,6 +402,8 @@ class OCRService:
             return "", []
 
     def _normalize_p2t_result(self, result: Any) -> list[dict[str, Any]]:
+        """把 P2T 原始输出（可能是 list of dict 或其他形态）归一化成
+        标准片段列表 ``[{text, type, score, bbox, ...}, ...]``。"""
         elements: list[Any] = []
         pages = getattr(result, "pages", None)
         if pages is not None:
@@ -395,6 +445,7 @@ class OCRService:
         return segments
 
     def _segments_from_text(self, text: str) -> list[dict[str, Any]]:
+        """把纯文本按行切成片段（无 bbox/score），用于手动输入或单引擎兜底。"""
         lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
         return [
             {
@@ -408,6 +459,10 @@ class OCRService:
         ]
 
     def _save_ocr_run(self, engine: str, raw_text: str, segments: list[dict[str, Any]]) -> str:
+        """落库一份 OCR 运行记录到 ``outputs/ocr_runs/``，便于回放与排查。
+
+        文件名含时间戳 + 引擎名 + UUID，避免冲突。返回保存路径。
+        """
         run_id = datetime.now().strftime("%Y%m%d-%H%M%S") + "-" + uuid.uuid4().hex[:8]
         out_path = self._output_dir / f"{run_id}.json"
         payload = {
@@ -422,6 +477,10 @@ class OCRService:
         return str(out_path)
 
     def _extract_with_layout_pipeline(self, image_bytes: bytes) -> str | None:
+        """「布局 + rapid」路径：layout_segmenter 切块，文字块喂 rapid-ocr。
+
+        是双引擎路径的轻量版（只识文字，不识公式）。作为 fallback。
+        """
         if not image_bytes:
             return None
         boxes = segment_formula_regions(image_bytes=image_bytes, max_segments=90)
@@ -457,11 +516,13 @@ class OCRService:
         return "\n".join(lines)
 
     def _normalize_chunk(self, text: str) -> str:
+        """strip + 把连续空白压成一个空格。"""
         text = text.strip()
         text = re.sub(r"\s+", " ", text)
         return text
 
     def _looks_like_math(self, text: str) -> bool:
+        """启发式判断文本是否像数学表达式（含常见 LaTeX 命令或数学符号或数字）。"""
         if len(text) < 2:
             return False
         math_tokens = [
@@ -483,6 +544,12 @@ class OCRService:
         return bool(re.search(r"\d", text))
 
     def _is_likely_gibberish(self, text: str) -> bool:
+        """启发式判断 latex-ocr 的输出是不是「乱码」。
+
+        rapid/pix2tex 在某些图上会刷出大量重复的 ``\\vdots``、
+        ``\\varphi``、``\\theta`` 等字符，或返回超长但完全不含数字/等号
+        的字符串——这些明显是模型幻觉，应当丢弃。
+        """
         if text.count("\\vdots") >= 2:
             return True
         if text.count("\\varphi") >= 3:
@@ -498,6 +565,7 @@ class OCRService:
         return False
 
     def _extract_with_rapid_latex_ocr(self, image_bytes: bytes) -> str | None:
+        """调用 rapid-latex-ocr（基于 OnnxRunner 的轻量公式识别）。失败返回 None。"""
         if self._rapid_unavailable:
             return None
         try:
@@ -524,6 +592,7 @@ class OCRService:
             return None
 
     def _extract_with_pix2tex(self, image_bytes: bytes) -> str | None:
+        """调用 pix2tex（LaTeX-OCR PyTorch 版）。失败返回 None。"""
         if self._pix2tex_unavailable:
             return None
         try:

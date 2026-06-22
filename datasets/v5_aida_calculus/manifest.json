@@ -1,0 +1,502 @@
+[
+  {
+    "id": "ai-0000",
+    "image_path": "data/images/ai-0000.png",
+    "ground_truth_latex": "\\lim_{v\\toy}\\frac{v+\\left(-5y\\right)^{20}+-6v+y}{v+-2y}"
+  },
+  {
+    "id": "ai-0001",
+    "image_path": "data/images/ai-0001.png",
+    "ground_truth_latex": "\\lim_{x\\to\\infty}\\left(\\sqrt{x^{8}+x+3}+-8\\sqrt{x^{9}+-4x}\\right)\\frac{\\sqrt{x^{8}+x+3}+\\sqrt{x^{3}+0}}{\\sqrt{x^{5}+x+2}+\\sqrt{x^{2}+-2x}}"
+  },
+  {
+    "id": "ai-0002",
+    "image_path": "data/images/ai-0002.png",
+    "ground_truth_latex": "\\lim_{u\\to\\pi/8}\\frac{2\\tan^{6}{u}+3\\cos^{5}{u}}{4}"
+  },
+  {
+    "id": "ai-0003",
+    "image_path": "data/images/ai-0003.png",
+    "ground_truth_latex": "\\lim_{x\\to\\frac{\\pi}{3}}\\frac{2\\tan^{2}{x}+2\\sin^{2}{x}}{2}"
+  },
+  {
+    "id": "ai-0004",
+    "image_path": "data/images/ai-0004.png",
+    "ground_truth_latex": "\\lim_{k\\to0^{+}}\\frac{3}{k+6^{7}}"
+  },
+  {
+    "id": "ai-0005",
+    "image_path": "data/images/ai-0005.png",
+    "ground_truth_latex": "=\\lim_{k\\to\\infty}\\frac{\\frac{d}{dk}\\left(9k^{4}+-2k^{4}\\right)}{\\frac{d}{dk}\\left(2k^{4}+22\\right)}"
+  },
+  {
+    "id": "ai-0006",
+    "image_path": "data/images/ai-0006.png",
+    "ground_truth_latex": "=\\lim_{x\\to8^{+}}\\frac{-9\\tan{x}\\sec^{1}{x}}{\\sin^{1}{x}+\\left(x\\tan{x}+3\\right)\\sin^{5}{x}}"
+  },
+  {
+    "id": "ai-0007",
+    "image_path": "data/images/ai-0007.png",
+    "ground_truth_latex": "\\frac{\\lim_{u\\to3^{+}}209\\lnu^{5}}{\\lim_{u\\to2^{+}}\\sqrt{y}}"
+  },
+  {
+    "id": "ai-0008",
+    "image_path": "data/images/ai-0008.png",
+    "ground_truth_latex": "\\lim_{t\\to3}\\frac{32}{\\sqrt{10-4}+8}"
+  },
+  {
+    "id": "ai-0009",
+    "image_path": "data/images/ai-0009.png",
+    "ground_truth_latex": "\\lim_{u\\to3^{+}}-60\\tan{u}"
+  },
+  {
+    "id": "ai-0010",
+    "image_path": "data/images/ai-0010.png",
+    "ground_truth_latex": "\\lim_{g\\to\\pi/8}\\frac{\\frac{d}{dg}\\left(\\tan{g}+-6\\sin{g}\\right)}{\\frac{d}{dg}\\left(g+-9\\pi/5\\right)}"
+  },
+  {
+    "id": "ai-0011",
+    "image_path": "data/images/ai-0011.png",
+    "ground_truth_latex": "\\lim_{c\\to\\infty}\\frac{3c^{5}}{c}"
+  },
+  {
+    "id": "ai-0012",
+    "image_path": "data/images/ai-0012.png",
+    "ground_truth_latex": "\\lim_{s\\to\\pi/9}\\cos^{2}{s}+\\lim_{s\\to\\pi/6}\\sin^{4}{s}"
+  },
+  {
+    "id": "ai-0013",
+    "image_path": "data/images/ai-0013.png",
+    "ground_truth_latex": "\\ln{z}=\\frac{\\lim_{u\\to\\frac{\\pi}{2}^{-}}-2\\tan^{4}{u}}{\\lim_{u\\to\\frac{\\pi}{2}^{-}}7\\tan^{9}{u}\\sec{u}}"
+  },
+  {
+    "id": "ai-0014",
+    "image_path": "data/images/ai-0014.png",
+    "ground_truth_latex": "\\lim_{u\\to\\pi/8}\\frac{\\tan^{3}{u}+\\cos^{3}{u}}{2}"
+  },
+  {
+    "id": "ai-0015",
+    "image_path": "data/images/ai-0015.png",
+    "ground_truth_latex": "\\ln{x}=\\frac{\\lim_{u\\to\\frac{\\pi}{2}^{-}}\\frac{d}{du}\\cos{u}}{\\lim_{u\\to\\frac{\\pi}{3}^{-}}\\frac{d}{du}-3\\sec^{2}{u}}"
+  },
+  {
+    "id": "ai-0016",
+    "image_path": "data/images/ai-0016.png",
+    "ground_truth_latex": "\\lim_{c\\to1^{+}}\\frac{c^{1}+-2c^{1}+0}{\\sqrt{c-4}}"
+  },
+  {
+    "id": "ai-0017",
+    "image_path": "data/images/ai-0017.png",
+    "ground_truth_latex": "\\lim_{s\\to\\pi/8^{-}}\\frac{\\frac{d}{ds}\\tan{s}}{\\frac{d}{ds}\\frac{3}{3s+2\\pi}}"
+  },
+  {
+    "id": "ai-0018",
+    "image_path": "data/images/ai-0018.png",
+    "ground_truth_latex": "\\lim_{g\\to1}\\frac{g+-7\\sin{\\pi}g}{g^{2}-4}"
+  },
+  {
+    "id": "ai-0019",
+    "image_path": "data/images/ai-0019.png",
+    "ground_truth_latex": "\\lim_{a\\to3^{+}}\\frac{a-1}{\\sqrt{a-2}}"
+  },
+  {
+    "id": "ai-0020",
+    "image_path": "data/images/ai-0020.png",
+    "ground_truth_latex": "\\lim_{g\\to-4}\\frac{g^{9}+9g+1}{g^{0}-2}"
+  },
+  {
+    "id": "ai-0021",
+    "image_path": "data/images/ai-0021.png",
+    "ground_truth_latex": "\\lim_{x\\to9}\\frac{x+0}{\\left|x-2\\right|}"
+  },
+  {
+    "id": "ai-0022",
+    "image_path": "data/images/ai-0022.png",
+    "ground_truth_latex": "\\lim_{a\\to3}9+6\\frac{a}{\\sqrt{a^{2}-2}}"
+  },
+  {
+    "id": "ai-0023",
+    "image_path": "data/images/ai-0023.png",
+    "ground_truth_latex": "\\lim_{y\\to5}\\frac{6}{8}y-6"
+  },
+  {
+    "id": "ai-0024",
+    "image_path": "data/images/ai-0024.png",
+    "ground_truth_latex": "\\lim_{g\\to5^{+}}\\frac{-4\\tan{g}\\cos^{2}{g}}{\\cos^{7}{g}+\\left(6g\\tan{g}+3\\right)\\cos^{6}{g}}"
+  },
+  {
+    "id": "ai-0025",
+    "image_path": "data/images/ai-0025.png",
+    "ground_truth_latex": "\\lim_{z\\to-3}\\frac{z^{1}+84}{z^{1}+0}"
+  },
+  {
+    "id": "ai-0026",
+    "image_path": "data/images/ai-0026.png",
+    "ground_truth_latex": "\\lim_{b\\to4}\\left(\\tan{b}+3\\right)\\lim_{b\\to9}\\frac{\\sin{b}+4}{b}"
+  },
+  {
+    "id": "ai-0027",
+    "image_path": "data/images/ai-0027.png",
+    "ground_truth_latex": "\\lim_{k\\to\\pi/5}\\frac{\\sin^{9}{k}+\\tan^{4}{k}}{4}"
+  },
+  {
+    "id": "ai-0028",
+    "image_path": "data/images/ai-0028.png",
+    "ground_truth_latex": "\\lim_{u\\to-\\infty}5+\\frac{\\sin{u}}{u}"
+  },
+  {
+    "id": "ai-0029",
+    "image_path": "data/images/ai-0029.png",
+    "ground_truth_latex": "\\lim_{s\\to4^{+}}\\frac{\\frac{d}{ds}\\left(3+-4\\sec^{1}{s}\\right)}{\\frac{d}{ds}\\left(\\cos+s\\tan^{2}{s}\\right)}"
+  },
+  {
+    "id": "ai-0030",
+    "image_path": "data/images/ai-0030.png",
+    "ground_truth_latex": "=\\lim_{w\\to-\\infty}\\frac{6w^{9}}{-4w^{3}}"
+  },
+  {
+    "id": "ai-0031",
+    "image_path": "data/images/ai-0031.png",
+    "ground_truth_latex": "\\lim_{s\\to\\frac{\\pi}{3}}\\sec^{2}{s}+\\lim_{s\\to\\frac{\\pi}{9}}\\tan^{6}{s}"
+  },
+  {
+    "id": "ai-0032",
+    "image_path": "data/images/ai-0032.png",
+    "ground_truth_latex": "\\lim_{r\\to5}\\frac{9+\\sin{r}}{9+-4\\cos^{5}{r}}"
+  },
+  {
+    "id": "ai-0033",
+    "image_path": "data/images/ai-0033.png",
+    "ground_truth_latex": "\\lim_{s\\to\\frac{\\pi}{5}}\\frac{\\cos^{7}{s}+\\sin^{2}{s}}{5}"
+  },
+  {
+    "id": "ai-0034",
+    "image_path": "data/images/ai-0034.png",
+    "ground_truth_latex": "\\lim_{u\\to9}\\frac{u-9}{\\left(u-1\\right)\\left(u+3\\right)}"
+  },
+  {
+    "id": "ai-0035",
+    "image_path": "data/images/ai-0035.png",
+    "ground_truth_latex": "\\ln{u}=\\frac{\\lim_{\\theta\\to\\pi/5^{-}}-2\\csc^{3}{\\theta}}{\\lim_{\\theta\\to\\pi/8^{-}}4\\sin^{2}{\\theta}\\cos{\\theta}}"
+  },
+  {
+    "id": "ai-0036",
+    "image_path": "data/images/ai-0036.png",
+    "ground_truth_latex": "\\lim_{h\\to-2}\\frac{h^{3}+6h+2}{h+6}"
+  },
+  {
+    "id": "ai-0037",
+    "image_path": "data/images/ai-0037.png",
+    "ground_truth_latex": "\\frac{\\lim_{s\\to0}\\frac{d}{ds}85\\sin{\\left(4s\\right)}\\sin{\\left(6s\\right)}}{\\lim_{s\\to6}\\frac{d}{ds}7s}"
+  },
+  {
+    "id": "ai-0038",
+    "image_path": "data/images/ai-0038.png",
+    "ground_truth_latex": "\\lim_{c\\to2}\\frac{c+-6\\cos{c}}{c^{1}}"
+  },
+  {
+    "id": "ai-0039",
+    "image_path": "data/images/ai-0039.png",
+    "ground_truth_latex": "=\\lim_{\\theta\\to1}\\frac{\\sec{1}\\theta}{\\cos{3}\\theta}"
+  },
+  {
+    "id": "ai-0040",
+    "image_path": "data/images/ai-0040.png",
+    "ground_truth_latex": "\\frac{8}{8}\\lim_{h\\to3}\\frac{\\cos{\\left(2h\\right)}}{h}"
+  },
+  {
+    "id": "ai-0041",
+    "image_path": "data/images/ai-0041.png",
+    "ground_truth_latex": "-2\\lim_{g\\to-\\infty}\\ln{\\left|g^{7}+7\\right|}"
+  },
+  {
+    "id": "ai-0042",
+    "image_path": "data/images/ai-0042.png",
+    "ground_truth_latex": "\\lim_{r\\to-\\infty}r^{7}+-2\\sqrt{r^{5}+9r^{1}}"
+  },
+  {
+    "id": "ai-0043",
+    "image_path": "data/images/ai-0043.png",
+    "ground_truth_latex": "\\frac{\\lim_{x\\to5}56\\left(3\\cot^{9}{\\left(2x\\right)}+\\cos^{4}{\\left(2x\\right)}\\right)}{7}"
+  },
+  {
+    "id": "ai-0044",
+    "image_path": "data/images/ai-0044.png",
+    "ground_truth_latex": "\\lim_{r\\to1}\\frac{5+-2\\cos{\\left(2r\\right)}}{\\sin{r}}"
+  },
+  {
+    "id": "ai-0045",
+    "image_path": "data/images/ai-0045.png",
+    "ground_truth_latex": "\\lim_{w\\to7}\\frac{\\ln{\\left(7+w^{2}\\right)}}{e^{w}+-\\cos{w}}"
+  },
+  {
+    "id": "ai-0046",
+    "image_path": "data/images/ai-0046.png",
+    "ground_truth_latex": "\\lim_{s\\to\\infty}\\frac{\\log_{87}{3}}{\\log_{10}{3}}"
+  },
+  {
+    "id": "ai-0047",
+    "image_path": "data/images/ai-0047.png",
+    "ground_truth_latex": "\\lim_{w\\to5^{+}}-3\\frac{2\\sec{w}\\tan{w}}{\\cos{w}+-8w\\tan{w}}"
+  },
+  {
+    "id": "ai-0048",
+    "image_path": "data/images/ai-0048.png",
+    "ground_truth_latex": "\\lim_{n\\to\\infty}\\frac{n^{3}+n+1+-2\\left(n^{4}+-3n\\right)}{\\sqrt{n^{7}+n+1}+\\sqrt{n^{3}+-n}}"
+  },
+  {
+    "id": "ai-0049",
+    "image_path": "data/images/ai-0049.png",
+    "ground_truth_latex": "\\lim_{h\\to\\pi/2}\\frac{6}{\\sin{h}+5}"
+  },
+  {
+    "id": "ai-0050",
+    "image_path": "data/images/ai-0050.png",
+    "ground_truth_latex": "=\\lim_{r\\to3}\\frac{\\cos{r}+2}{r}"
+  },
+  {
+    "id": "ai-0051",
+    "image_path": "data/images/ai-0051.png",
+    "ground_truth_latex": "\\lim_{x\\to\\infty}\\frac{2x+9}{x^{5}-3}"
+  },
+  {
+    "id": "ai-0052",
+    "image_path": "data/images/ai-0052.png",
+    "ground_truth_latex": "\\lim_{s\\to\\frac{\\pi}{3}}\\tan^{2}{s}+\\lim_{s\\to\\frac{\\pi}{2}}\\tan^{7}{s}"
+  },
+  {
+    "id": "ai-0053",
+    "image_path": "data/images/ai-0053.png",
+    "ground_truth_latex": "\\lim_{s\\to3}\\frac{s-3}{\\left(s-3^{8}\\right)\\left(s-7\\right)}"
+  },
+  {
+    "id": "ai-0054",
+    "image_path": "data/images/ai-0054.png",
+    "ground_truth_latex": "\\lim_{x\\to6}\\frac{x^{4/2}}{x+-9\\sqrt{7x}}"
+  },
+  {
+    "id": "ai-0055",
+    "image_path": "data/images/ai-0055.png",
+    "ground_truth_latex": "\\lim_{y\\to\\frac{\\pi}{3}}\\frac{5\\cos^{2}{y}+-7\\tan^{6}{y}}{3}"
+  },
+  {
+    "id": "ai-0056",
+    "image_path": "data/images/ai-0056.png",
+    "ground_truth_latex": "\\lim_{t\\to7^{+}}\\frac{\\frac{d}{dt}\\left(0+-\\cos^{4}{t}\\right)}{\\frac{d}{dt}\\left(\\sin{t}+t\\cos^{6}{t}\\right)}"
+  },
+  {
+    "id": "ai-0057",
+    "image_path": "data/images/ai-0057.png",
+    "ground_truth_latex": "\\lim_{x\\to\\frac{\\pi}{2}}\\frac{\\frac{d}{dx}\\left(\\tan{x}+-2\\sin{x}\\right)}{\\frac{d}{dx}\\left(x+-3\\frac{\\pi}{2}\\right)}"
+  },
+  {
+    "id": "ai-0058",
+    "image_path": "data/images/ai-0058.png",
+    "ground_truth_latex": "\\lim_{r\\to1}\\frac{6\\csc{\\left(7r\\right)}}{5r\\sin{\\left(4r\\right)}}"
+  },
+  {
+    "id": "ai-0059",
+    "image_path": "data/images/ai-0059.png",
+    "ground_truth_latex": "\\lim_{t\\to\\frac{\\pi}{4}^{-}}\\frac{\\tan^{9}{t}}{2\\frac{-4}{9t+\\left(-7\\pi\\right)^{4}}}"
+  },
+  {
+    "id": "ai-0060",
+    "image_path": "data/images/ai-0060.png",
+    "ground_truth_latex": "\\frac{-2\\lim_{b\\to5}b^{7}}{\\lim_{b\\to2}2b+3^{\\frac{4}{7}}}"
+  },
+  {
+    "id": "ai-0061",
+    "image_path": "data/images/ai-0061.png",
+    "ground_truth_latex": "\\lim_{c\\to2^{+}}-2\\tan{c}"
+  },
+  {
+    "id": "ai-0062",
+    "image_path": "data/images/ai-0062.png",
+    "ground_truth_latex": "\\lim_{w\\to\\infty}\\frac{38}{26}"
+  },
+  {
+    "id": "ai-0063",
+    "image_path": "data/images/ai-0063.png",
+    "ground_truth_latex": "\\lim_{z\\to\\pi/7}\\frac{7\\cos^{9}{z}+-6\\cos^{3}{z}}{9}"
+  },
+  {
+    "id": "ai-0064",
+    "image_path": "data/images/ai-0064.png",
+    "ground_truth_latex": "\\ln{w}=\\frac{\\lim_{t\\to\\frac{\\pi}{2}^{-}}\\frac{d}{dt}\\sin{t}}{\\lim_{t\\to\\frac{\\pi}{6}^{-}}\\frac{d}{dt}-3\\sin^{2}{t}}"
+  },
+  {
+    "id": "ai-0065",
+    "image_path": "data/images/ai-0065.png",
+    "ground_truth_latex": "\\lim_{v\\to6^{-}}\\frac{1+-9v}{v-6}"
+  },
+  {
+    "id": "ai-0066",
+    "image_path": "data/images/ai-0066.png",
+    "ground_truth_latex": "\\lim_{z\\to\\infty}\\frac{5}{z^{-3}}+-2\\frac{\\tan{\\frac{4}{z}}}{z^{-8}}"
+  },
+  {
+    "id": "ai-0067",
+    "image_path": "data/images/ai-0067.png",
+    "ground_truth_latex": "\\lim_{p\\to3^{+}}\\frac{-7\\tan{p}\\sin^{2}{p}}{\\tan^{2}{p}+\\left(3p\\sin{p}+2\\right)\\tan^{1}{p}}"
+  },
+  {
+    "id": "ai-0068",
+    "image_path": "data/images/ai-0068.png",
+    "ground_truth_latex": "\\lim_{z\\to\\pi/4}\\sec^{7}{z}+\\sin^{7}{z}"
+  },
+  {
+    "id": "ai-0069",
+    "image_path": "data/images/ai-0069.png",
+    "ground_truth_latex": "\\lim_{x\\to6^{-}}\\frac{x^{1}+-x}{\\left|x\\right|}"
+  },
+  {
+    "id": "ai-0070",
+    "image_path": "data/images/ai-0070.png",
+    "ground_truth_latex": "\\lim_{r\\to\\frac{\\pi}{8}}\\frac{3\\sec^{2}{r}+4\\cot^{8}{r}}{6}"
+  },
+  {
+    "id": "ai-0071",
+    "image_path": "data/images/ai-0071.png",
+    "ground_truth_latex": "3/2\\lim_{t\\to\\pi/2^{-}}\\frac{3}{\\cos^{4}{t}+8\\sin^{4}{t}}"
+  },
+  {
+    "id": "ai-0072",
+    "image_path": "data/images/ai-0072.png",
+    "ground_truth_latex": "\\lim_{t\\to7}\\frac{7}{t-4}"
+  },
+  {
+    "id": "ai-0073",
+    "image_path": "data/images/ai-0073.png",
+    "ground_truth_latex": "\\lim_{p\\to5^{+}}\\frac{\\left(p-1\\right)\\left(p-2\\right)}{\\left(p-1\\right)\\left(p+4\\right)}"
+  },
+  {
+    "id": "ai-0074",
+    "image_path": "data/images/ai-0074.png",
+    "ground_truth_latex": "\\lim_{x\\to7}\\frac{\\tan{\\left(8x\\right)}}{x\\sin{\\left(2x\\right)}}\\frac{4}{9}"
+  },
+  {
+    "id": "ai-0075",
+    "image_path": "data/images/ai-0075.png",
+    "ground_truth_latex": "=\\lim_{x\\to\\pi/9}\\csc^{8}{x}+\\sin^{5}{x}"
+  },
+  {
+    "id": "ai-0076",
+    "image_path": "data/images/ai-0076.png",
+    "ground_truth_latex": "\\lim_{c\\to\\infty}7c"
+  },
+  {
+    "id": "ai-0077",
+    "image_path": "data/images/ai-0077.png",
+    "ground_truth_latex": "\\lim_{t\\toy}t+\\left(-6y\\right)^{17}-1"
+  },
+  {
+    "id": "ai-0078",
+    "image_path": "data/images/ai-0078.png",
+    "ground_truth_latex": "\\lim_{v\\to\\infty}\\frac{v}{e^{v}}"
+  },
+  {
+    "id": "ai-0079",
+    "image_path": "data/images/ai-0079.png",
+    "ground_truth_latex": "\\lim_{c\\to-\\infty}\\frac{1c^{8}}{-7c^{9}}"
+  },
+  {
+    "id": "ai-0080",
+    "image_path": "data/images/ai-0080.png",
+    "ground_truth_latex": "\\frac{\\lim_{w\\to2}94\\left(3\\tan^{8}{\\left(2w\\right)}+\\cos^{6}{\\left(2w\\right)}\\right)}{5}"
+  },
+  {
+    "id": "ai-0081",
+    "image_path": "data/images/ai-0081.png",
+    "ground_truth_latex": "\\lim_{z\\to3^{+}}\\frac{5}{4+-3z}"
+  },
+  {
+    "id": "ai-0082",
+    "image_path": "data/images/ai-0082.png",
+    "ground_truth_latex": "\\lim_{x\\to\\pi/8}\\tan^{9}{x}+\\tan^{8}{x}"
+  },
+  {
+    "id": "ai-0083",
+    "image_path": "data/images/ai-0083.png",
+    "ground_truth_latex": "\\lim_{h\\to\\pi/2}\\frac{\\frac{d}{dh}\\left(\\sin{h}+-8\\cot{h}\\right)}{\\frac{d}{dh}\\left(h+-4\\pi/5\\right)}"
+  },
+  {
+    "id": "ai-0084",
+    "image_path": "data/images/ai-0084.png",
+    "ground_truth_latex": "\\lim_{b\\to3^{+}}\\frac{\\frac{d}{db}\\left(2+-\\tan^{9}{b}\\right)}{\\frac{d}{db}\\left(\\cos{b}+b\\cos^{8}{b}\\right)}"
+  },
+  {
+    "id": "ai-0085",
+    "image_path": "data/images/ai-0085.png",
+    "ground_truth_latex": "\\lim_{v\\to\\pi/3}\\frac{\\frac{d}{dv}\\left(\\sin{v}+-5\\cos{v}\\right)}{\\frac{d}{dv}\\left(v+-9\\pi/9\\right)}"
+  },
+  {
+    "id": "ai-0086",
+    "image_path": "data/images/ai-0086.png",
+    "ground_truth_latex": "\\lim_{h\\to3^{+}}\\frac{\\frac{d}{dh}\\left(h+-6\\sec{h}\\right)}{\\frac{d}{dh}h\\sin{h}}"
+  },
+  {
+    "id": "ai-0087",
+    "image_path": "data/images/ai-0087.png",
+    "ground_truth_latex": "\\lim_{k\\to\\infty}\\frac{\\lnk^{6}}{\\sqrt{x}}"
+  },
+  {
+    "id": "ai-0088",
+    "image_path": "data/images/ai-0088.png",
+    "ground_truth_latex": "\\lim_{h\\to\\infty}\\frac{2}{2}"
+  },
+  {
+    "id": "ai-0089",
+    "image_path": "data/images/ai-0089.png",
+    "ground_truth_latex": "\\lim_{t\\to-\\infty}\\frac{3t}{t}"
+  },
+  {
+    "id": "ai-0090",
+    "image_path": "data/images/ai-0090.png",
+    "ground_truth_latex": "\\lim_{n\\to7/8}\\frac{9n+-2\\tan{\\pi}n}{4n^{6}-8}"
+  },
+  {
+    "id": "ai-0091",
+    "image_path": "data/images/ai-0091.png",
+    "ground_truth_latex": "\\lim_{g\\to\\frac{\\pi}{2}^{-}}\\frac{\\sec^{2}{g}}{5\\frac{-3}{2g+\\left(-5\\pi\\right)^{2}}}"
+  },
+  {
+    "id": "ai-0092",
+    "image_path": "data/images/ai-0092.png",
+    "ground_truth_latex": "\\ln{r}=\\frac{\\lim_{t\\to\\pi/2^{-}}\\frac{d}{dt}\\sin{t}}{\\lim_{t\\to\\pi/2^{-}}\\frac{d}{dt}-2\\sec^{6}{t}}"
+  },
+  {
+    "id": "ai-0093",
+    "image_path": "data/images/ai-0093.png",
+    "ground_truth_latex": "x=\\lim_{p\\to\\frac{\\pi}{5}^{-}}\\sin^{\\sin{\\left(p\\right)}}\\left(p\\right)"
+  },
+  {
+    "id": "ai-0094",
+    "image_path": "data/images/ai-0094.png",
+    "ground_truth_latex": "\\lim_{u\\to\\pi/9}\\sin^{5}{u}+\\lim_{u\\to\\pi/2}\\sec^{8}{u}"
+  },
+  {
+    "id": "ai-0095",
+    "image_path": "data/images/ai-0095.png",
+    "ground_truth_latex": "\\lim_{y\\to-5^{+}}\\frac{y^{1}+-4y+5}{y^{3}-6}"
+  },
+  {
+    "id": "ai-0096",
+    "image_path": "data/images/ai-0096.png",
+    "ground_truth_latex": "\\lim_{\\theta\\to3^{+}}\\frac{\\frac{d}{d\\theta}\\left(0+-3\\cos^{0}{\\theta}\\right)}{\\frac{d}{d\\theta}\\left(\\cos{\\theta}+\\theta\\sin^{3}{\\theta}\\right)}"
+  },
+  {
+    "id": "ai-0097",
+    "image_path": "data/images/ai-0097.png",
+    "ground_truth_latex": "\\lim_{x\\to0^{+}}\\frac{-2\\cos{x}\\cos^{1}{x}}{\\tan^{8}{x}+\\left(2x\\tan{x}+5\\right)\\cos^{2}{x}}"
+  },
+  {
+    "id": "ai-0098",
+    "image_path": "data/images/ai-0098.png",
+    "ground_truth_latex": "\\frac{\\lim_{h\\to8}33\\sin{\\left(4h\\right)}\\sin{\\left(6h\\right)}}{\\lim_{h\\to3}2h}"
+  },
+  {
+    "id": "ai-0099",
+    "image_path": "data/images/ai-0099.png",
+    "ground_truth_latex": "\\lim_{x\\to5}\\frac{\\cos{x}-2}{x}"
+  }
+]
